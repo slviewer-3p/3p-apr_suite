@@ -73,35 +73,29 @@ case "$AUTOBUILD_PLATFORM" in
     cp -R "apr/include/arch/win32" "$INCLUDE_DIR/arch"
     mkdir "$INCLUDE_DIR/private"
     cp -R apr-util/include/private "$INCLUDE_DIR"
-
-    mkdir -p "$STAGING_DIR/LICENSES"
-    cp apr/LICENSE "$STAGING_DIR/LICENSES/apr_suite.txt"
     popd
 ;;
 'darwin')
-    PREFIX="$STAGING_DIR/libraries/universal-darwin"
+    PREFIX="$STAGING_DIR"
     
-    pushd "$APR_SOURCE_DIR"
-    CC="gcc-4.0" CFLAGS="-isysroot /Developer/SDKs/MacOSX10.4u.sdk -mmacosx-version-min=10.4" \
+    pushd "$TOP_DIR/apr"
+    CC="gcc-4.2" CFLAGS="-isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5" \
         ./configure --prefix="$PREFIX"
     make
     make install
     popd
     
-    EXPAT_DIR="$TOP_DIR/build-darwin-i386/packages/libraries/universal-darwin/"
-    ln -fsv "$EXPAT_DIR/lib_release" "$EXPAT_DIR/lib"
-
-    pushd "$APR_UTIL_SOURCE_DIR"
-    CC="gcc-4.0" CFLAGS="-isysroot /Developer/SDKs/MacOSX10.4u.sdk -mmacosx-version-min=10.4" \
+    pushd "apr-util"
+    CC="gcc-4.2" CFLAGS="-isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5" \
         ./configure --prefix="$PREFIX" --with-apr="$PREFIX" \
-        --with-expat=$EXPAT_DIR
+        --with-expat="$PREFIX"
     make
     make install
     popd
     
-    mv "$PREFIX/lib" "$PREFIX/lib_release"
+    mv "$PREFIX/lib" "$PREFIX/lib/release"
     
-    pushd "$PREFIX/lib_release"
+    pushd "$PREFIX/lib/release"
     for lib in `find . -name "*.dylib"`
     do
         fix_dylib_id $lib
@@ -111,9 +105,6 @@ case "$AUTOBUILD_PLATFORM" in
 		install_name_tool -change "$strange_apr" "@loader_path/$(readlink "libapr-1.dylib")" "$lib"
     done
     popd
-
-    mkdir -p "$STAGING_DIR/LICENSES"
-    cat "$APR_SOURCE_DIR/LICENSE" > "$STAGING_DIR/LICENSES/apr_suite.txt"
 ;;
 'linux')
     PREFIX="$STAGING_DIR/libraries/i686-linux"
@@ -135,11 +126,11 @@ case "$AUTOBUILD_PLATFORM" in
 	popd
 
     mv "$PREFIX/lib" "$PREFIX/lib_release_client"
-
-    mkdir -p "$STAGING_DIR/LICENSES"
-    cat "$APR_SOURCE_DIR/LICENSE" > "$STAGING_DIR/LICENSES/apr_suite.txt"
 ;;
 esac
+
+mkdir -p "$STAGING_DIR/LICENSES"
+cat "$APR_SOURCE_DIR/LICENSE" > "$STAGING_DIR/LICENSES/apr_suite.txt"
 
 pass
 
