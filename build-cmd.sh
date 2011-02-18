@@ -94,7 +94,7 @@ case "$AUTOBUILD_PLATFORM" in
     popd
     
     mv "$PREFIX/lib" "$PREFIX/release"
-    mkdir "$PREFIX/lib"
+    mkdir -p "$PREFIX/lib"
     mv "$PREFIX/release" "$PREFIX/lib/release"
     
     pushd "$PREFIX/lib/release"
@@ -109,25 +109,24 @@ case "$AUTOBUILD_PLATFORM" in
     popd
 ;;
 'linux')
-    PREFIX="$STAGING_DIR/libraries/i686-linux"
+    PREFIX="$STAGING_DIR"
 
-    pushd "$APR_SOURCE_DIR"
+    pushd "$TOP_DIR/apr"
     ./configure --prefix="$PREFIX"
     make
     make install
     popd
 
-    EXPAT_DIR="$TOP_DIR/build-linux-i686-relwithdebinfo/packages/libraries/i686-linux"
-    ln -fsv "$EXPAT_DIR/lib_release_client" "$EXPAT_DIR/lib"
-
-    pushd "$APR_UTIL_SOURCE_DIR"
+    pushd "$TOP_DIR/apr-util"
     ./configure --prefix="$PREFIX" --with-apr="$PREFIX" \
-        --with-expat=$EXPAT_DIR
+        --with-expat="$PREFIX"
     make
 	make install
 	popd
 
-    mv "$PREFIX/lib" "$PREFIX/lib_release_client"
+    mv "$PREFIX/lib" "$PREFIX/release"
+    mkdir -p "$PREFIX/lib"
+    mv "$PREFIX/release" "$PREFIX/lib"
 ;;
 esac
 
