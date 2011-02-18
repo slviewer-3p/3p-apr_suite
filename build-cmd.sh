@@ -85,7 +85,7 @@ case "$AUTOBUILD_PLATFORM" in
     make install
     popd
     
-    pushd "apr-util"
+    pushd "$TOP_DIR/apr-util"
     CC="gcc-4.2" CFLAGS="-isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5" \
         ./configure --prefix="$PREFIX" --with-apr="$PREFIX" \
         --with-expat="$PREFIX"
@@ -93,7 +93,9 @@ case "$AUTOBUILD_PLATFORM" in
     make install
     popd
     
-    mv "$PREFIX/lib" "$PREFIX/lib/release"
+    mv "$PREFIX/lib" "$PREFIX/release"
+    mkdir "$PREFIX/lib"
+    mv "$PREFIX/release" "$PREFIX/lib/release"
     
     pushd "$PREFIX/lib/release"
     for lib in `find . -name "*.dylib"`
@@ -130,7 +132,7 @@ case "$AUTOBUILD_PLATFORM" in
 esac
 
 mkdir -p "$STAGING_DIR/LICENSES"
-cat "$APR_SOURCE_DIR/LICENSE" > "$STAGING_DIR/LICENSES/apr_suite.txt"
+cat "$TOP_DIR/apr/LICENSE" > "$STAGING_DIR/LICENSES/apr_suite.txt"
 
 pass
 

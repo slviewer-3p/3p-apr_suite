@@ -56,6 +56,11 @@
               <string>Release</string>
             </map>
           </map>
+          <key>manifest</key>
+          <array>
+            <string>lib/release/*.a</string>
+            <string>lib/release/*.dylib</string>
+          </array>
           <key>name</key>
           <string>darwin</string>
         </map>
