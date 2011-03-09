@@ -112,13 +112,13 @@ case "$AUTOBUILD_PLATFORM" in
     PREFIX="$STAGING_DIR"
 
     pushd "$TOP_DIR/apr"
-    ./configure --prefix="$PREFIX"
+    LDFLAGS="-m32" CFLAGS="-m32" CXXFLAGS="-m32" ./configure --prefix="$PREFIX"
     make
     make install
     popd
 
     pushd "$TOP_DIR/apr-util"
-    ./configure --prefix="$PREFIX" --with-apr="$PREFIX" \
+    LDFLAGS="-m32" CFLAGS="-m32" CXXFLAGS="-m32" ./configure --prefix="$PREFIX" --with-apr="$PREFIX" \
         --with-expat="$PREFIX"
     make
 	make install
