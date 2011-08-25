@@ -79,14 +79,14 @@ case "$AUTOBUILD_PLATFORM" in
     PREFIX="$STAGING_DIR"
     
     pushd "$TOP_DIR/apr"
-    CC="gcc-4.2" CFLAGS="-isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5" \
+    CC="gcc-4.2" CFLAGS="-arch i386 -iwithsysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5" \
         ./configure --prefix="$PREFIX"
     make
     make install
     popd
     
     pushd "$TOP_DIR/apr-util"
-    CC="gcc-4.2" CFLAGS="-isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5" \
+    CC="gcc-4.2" CFLAGS="-arch i386 -iwithsysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5" \
         ./configure --prefix="$PREFIX" --with-apr="$PREFIX" \
         --with-expat="$PREFIX"
     make
