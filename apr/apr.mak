@@ -41,7 +41,6 @@ ALL : "$(OUTDIR)\apr-1.lib"
 
 
 CLEAN :
-	-@erase "$(INTDIR)\access.obj"
 	-@erase "$(INTDIR)\apr-1.idb"
 	-@erase "$(INTDIR)\apr-1.pdb"
 	-@erase "$(INTDIR)\apr_atomic.obj"
@@ -84,6 +83,7 @@ CLEAN :
 	-@erase "$(INTDIR)\open.obj"
 	-@erase "$(INTDIR)\otherchild.obj"
 	-@erase "$(INTDIR)\pipe.obj"
+	-@erase "$(INTDIR)\poll.obj"
 	-@erase "$(INTDIR)\pollcb.obj"
 	-@erase "$(INTDIR)\pollset.obj"
 	-@erase "$(INTDIR)\proc.obj"
@@ -205,6 +205,7 @@ LIB32_OBJS= \
 	"$(INTDIR)\socket_util.obj" \
 	"$(INTDIR)\sockopt.obj" \
 	"$(INTDIR)\apr_getpass.obj" \
+	"$(INTDIR)\poll.obj" \
 	"$(INTDIR)\pollcb.obj" \
 	"$(INTDIR)\pollset.obj" \
 	"$(INTDIR)\select.obj" \
@@ -224,7 +225,6 @@ LIB32_OBJS= \
 	"$(INTDIR)\signals.obj" \
 	"$(INTDIR)\thread.obj" \
 	"$(INTDIR)\threadpriv.obj" \
-	"$(INTDIR)\access.obj" \
 	"$(INTDIR)\time.obj" \
 	"$(INTDIR)\timestr.obj" \
 	"$(INTDIR)\groupinfo.obj" \
@@ -247,7 +247,6 @@ ALL : ".\include\apr.h" "$(OUTDIR)\apr-1.lib"
 
 
 CLEAN :
-	-@erase "$(INTDIR)\access.obj"
 	-@erase "$(INTDIR)\apr-1.idb"
 	-@erase "$(INTDIR)\apr-1.pdb"
 	-@erase "$(INTDIR)\apr_atomic.obj"
@@ -290,6 +289,7 @@ CLEAN :
 	-@erase "$(INTDIR)\open.obj"
 	-@erase "$(INTDIR)\otherchild.obj"
 	-@erase "$(INTDIR)\pipe.obj"
+	-@erase "$(INTDIR)\poll.obj"
 	-@erase "$(INTDIR)\pollcb.obj"
 	-@erase "$(INTDIR)\pollset.obj"
 	-@erase "$(INTDIR)\proc.obj"
@@ -412,6 +412,7 @@ LIB32_OBJS= \
 	"$(INTDIR)\socket_util.obj" \
 	"$(INTDIR)\sockopt.obj" \
 	"$(INTDIR)\apr_getpass.obj" \
+	"$(INTDIR)\poll.obj" \
 	"$(INTDIR)\pollcb.obj" \
 	"$(INTDIR)\pollset.obj" \
 	"$(INTDIR)\select.obj" \
@@ -431,7 +432,6 @@ LIB32_OBJS= \
 	"$(INTDIR)\signals.obj" \
 	"$(INTDIR)\thread.obj" \
 	"$(INTDIR)\threadpriv.obj" \
-	"$(INTDIR)\access.obj" \
 	"$(INTDIR)\time.obj" \
 	"$(INTDIR)\timestr.obj" \
 	"$(INTDIR)\groupinfo.obj" \
@@ -454,7 +454,6 @@ ALL : ".\include\apr.h" "$(OUTDIR)\apr-1.lib"
 
 
 CLEAN :
-	-@erase "$(INTDIR)\access.obj"
 	-@erase "$(INTDIR)\apr-1.idb"
 	-@erase "$(INTDIR)\apr-1.pdb"
 	-@erase "$(INTDIR)\apr_atomic.obj"
@@ -497,6 +496,7 @@ CLEAN :
 	-@erase "$(INTDIR)\open.obj"
 	-@erase "$(INTDIR)\otherchild.obj"
 	-@erase "$(INTDIR)\pipe.obj"
+	-@erase "$(INTDIR)\poll.obj"
 	-@erase "$(INTDIR)\pollcb.obj"
 	-@erase "$(INTDIR)\pollset.obj"
 	-@erase "$(INTDIR)\proc.obj"
@@ -619,6 +619,7 @@ LIB32_OBJS= \
 	"$(INTDIR)\socket_util.obj" \
 	"$(INTDIR)\sockopt.obj" \
 	"$(INTDIR)\apr_getpass.obj" \
+	"$(INTDIR)\poll.obj" \
 	"$(INTDIR)\pollcb.obj" \
 	"$(INTDIR)\pollset.obj" \
 	"$(INTDIR)\select.obj" \
@@ -638,7 +639,6 @@ LIB32_OBJS= \
 	"$(INTDIR)\signals.obj" \
 	"$(INTDIR)\thread.obj" \
 	"$(INTDIR)\threadpriv.obj" \
-	"$(INTDIR)\access.obj" \
 	"$(INTDIR)\time.obj" \
 	"$(INTDIR)\timestr.obj" \
 	"$(INTDIR)\groupinfo.obj" \
@@ -661,7 +661,6 @@ ALL : ".\include\apr.h" "$(OUTDIR)\apr-1.lib"
 
 
 CLEAN :
-	-@erase "$(INTDIR)\access.obj"
 	-@erase "$(INTDIR)\apr-1.idb"
 	-@erase "$(INTDIR)\apr-1.pdb"
 	-@erase "$(INTDIR)\apr_atomic.obj"
@@ -704,6 +703,7 @@ CLEAN :
 	-@erase "$(INTDIR)\open.obj"
 	-@erase "$(INTDIR)\otherchild.obj"
 	-@erase "$(INTDIR)\pipe.obj"
+	-@erase "$(INTDIR)\poll.obj"
 	-@erase "$(INTDIR)\pollcb.obj"
 	-@erase "$(INTDIR)\pollset.obj"
 	-@erase "$(INTDIR)\proc.obj"
@@ -826,6 +826,7 @@ LIB32_OBJS= \
 	"$(INTDIR)\socket_util.obj" \
 	"$(INTDIR)\sockopt.obj" \
 	"$(INTDIR)\apr_getpass.obj" \
+	"$(INTDIR)\poll.obj" \
 	"$(INTDIR)\pollcb.obj" \
 	"$(INTDIR)\pollset.obj" \
 	"$(INTDIR)\select.obj" \
@@ -845,7 +846,6 @@ LIB32_OBJS= \
 	"$(INTDIR)\signals.obj" \
 	"$(INTDIR)\thread.obj" \
 	"$(INTDIR)\threadpriv.obj" \
-	"$(INTDIR)\access.obj" \
 	"$(INTDIR)\time.obj" \
 	"$(INTDIR)\timestr.obj" \
 	"$(INTDIR)\groupinfo.obj" \
@@ -868,7 +868,6 @@ ALL : ".\include\apr.h" "$(OUTDIR)\apr-1.lib"
 
 
 CLEAN :
-	-@erase "$(INTDIR)\access.obj"
 	-@erase "$(INTDIR)\apr-1.idb"
 	-@erase "$(INTDIR)\apr-1.pdb"
 	-@erase "$(INTDIR)\apr_atomic.obj"
@@ -911,6 +910,7 @@ CLEAN :
 	-@erase "$(INTDIR)\open.obj"
 	-@erase "$(INTDIR)\otherchild.obj"
 	-@erase "$(INTDIR)\pipe.obj"
+	-@erase "$(INTDIR)\poll.obj"
 	-@erase "$(INTDIR)\pollcb.obj"
 	-@erase "$(INTDIR)\pollset.obj"
 	-@erase "$(INTDIR)\proc.obj"
@@ -1033,6 +1033,7 @@ LIB32_OBJS= \
 	"$(INTDIR)\socket_util.obj" \
 	"$(INTDIR)\sockopt.obj" \
 	"$(INTDIR)\apr_getpass.obj" \
+	"$(INTDIR)\poll.obj" \
 	"$(INTDIR)\pollcb.obj" \
 	"$(INTDIR)\pollset.obj" \
 	"$(INTDIR)\select.obj" \
@@ -1052,7 +1053,6 @@ LIB32_OBJS= \
 	"$(INTDIR)\signals.obj" \
 	"$(INTDIR)\thread.obj" \
 	"$(INTDIR)\threadpriv.obj" \
-	"$(INTDIR)\access.obj" \
 	"$(INTDIR)\time.obj" \
 	"$(INTDIR)\timestr.obj" \
 	"$(INTDIR)\groupinfo.obj" \
@@ -1075,7 +1075,6 @@ ALL : ".\include\apr.h" "$(OUTDIR)\apr-1.lib"
 
 
 CLEAN :
-	-@erase "$(INTDIR)\access.obj"
 	-@erase "$(INTDIR)\apr-1.idb"
 	-@erase "$(INTDIR)\apr-1.pdb"
 	-@erase "$(INTDIR)\apr_atomic.obj"
@@ -1118,6 +1117,7 @@ CLEAN :
 	-@erase "$(INTDIR)\open.obj"
 	-@erase "$(INTDIR)\otherchild.obj"
 	-@erase "$(INTDIR)\pipe.obj"
+	-@erase "$(INTDIR)\poll.obj"
 	-@erase "$(INTDIR)\pollcb.obj"
 	-@erase "$(INTDIR)\pollset.obj"
 	-@erase "$(INTDIR)\proc.obj"
@@ -1240,6 +1240,7 @@ LIB32_OBJS= \
 	"$(INTDIR)\socket_util.obj" \
 	"$(INTDIR)\sockopt.obj" \
 	"$(INTDIR)\apr_getpass.obj" \
+	"$(INTDIR)\poll.obj" \
 	"$(INTDIR)\pollcb.obj" \
 	"$(INTDIR)\pollset.obj" \
 	"$(INTDIR)\select.obj" \
@@ -1259,7 +1260,6 @@ LIB32_OBJS= \
 	"$(INTDIR)\signals.obj" \
 	"$(INTDIR)\thread.obj" \
 	"$(INTDIR)\threadpriv.obj" \
-	"$(INTDIR)\access.obj" \
 	"$(INTDIR)\time.obj" \
 	"$(INTDIR)\timestr.obj" \
 	"$(INTDIR)\groupinfo.obj" \
@@ -1285,422 +1285,422 @@ LIB32_OBJS= \
 !IF "$(CFG)" == "apr - Win32 Release" || "$(CFG)" == "apr - Win32 Debug" || "$(CFG)" == "apr - Win32 Release9x" || "$(CFG)" == "apr - Win32 Debug9x" || "$(CFG)" == "apr - x64 Release" || "$(CFG)" == "apr - x64 Debug"
 SOURCE=.\atomic\win32\apr_atomic.c
 
-"$(INTDIR)\apr_atomic.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\apr_atomic.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\dso\win32\dso.c
 
-"$(INTDIR)\dso.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\dso.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\win32\buffer.c
 
-"$(INTDIR)\buffer.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\buffer.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\unix\copy.c
 
-"$(INTDIR)\copy.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\copy.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\win32\dir.c
 
-"$(INTDIR)\dir.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\dir.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\unix\fileacc.c
 
-"$(INTDIR)\fileacc.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\fileacc.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\win32\filedup.c
 
-"$(INTDIR)\filedup.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\filedup.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\win32\filepath.c
 
-"$(INTDIR)\filepath.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\filepath.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\unix\filepath_util.c
 
-"$(INTDIR)\filepath_util.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\filepath_util.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\win32\filestat.c
 
-"$(INTDIR)\filestat.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\filestat.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\win32\filesys.c
 
-"$(INTDIR)\filesys.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\filesys.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\win32\flock.c
 
-"$(INTDIR)\flock.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\flock.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\unix\fullrw.c
 
-"$(INTDIR)\fullrw.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\fullrw.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\unix\mktemp.c
 
-"$(INTDIR)\mktemp.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\mktemp.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\win32\open.c
 
-"$(INTDIR)\open.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\open.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\win32\pipe.c
 
-"$(INTDIR)\pipe.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\pipe.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\win32\readwrite.c
 
-"$(INTDIR)\readwrite.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\readwrite.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\win32\seek.c
 
-"$(INTDIR)\seek.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\seek.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\file_io\unix\tempdir.c
 
-"$(INTDIR)\tempdir.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\tempdir.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\locks\win32\proc_mutex.c
 
-"$(INTDIR)\proc_mutex.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\proc_mutex.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\locks\win32\thread_cond.c
 
-"$(INTDIR)\thread_cond.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\thread_cond.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\locks\win32\thread_mutex.c
 
-"$(INTDIR)\thread_mutex.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\thread_mutex.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\locks\win32\thread_rwlock.c
 
-"$(INTDIR)\thread_rwlock.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\thread_rwlock.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\memory\unix\apr_pools.c
 
-"$(INTDIR)\apr_pools.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\apr_pools.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\misc\win32\apr_app.c
 SOURCE=.\misc\win32\charset.c
 
-"$(INTDIR)\charset.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\charset.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\misc\win32\env.c
 
-"$(INTDIR)\env.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\env.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\misc\unix\errorcodes.c
 
-"$(INTDIR)\errorcodes.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\errorcodes.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\misc\unix\getopt.c
 
-"$(INTDIR)\getopt.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\getopt.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\misc\win32\internal.c
 
-"$(INTDIR)\internal.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\internal.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\misc\win32\misc.c
 
-"$(INTDIR)\misc.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\misc.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\misc\unix\otherchild.c
 
-"$(INTDIR)\otherchild.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\otherchild.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\misc\win32\rand.c
 
-"$(INTDIR)\rand.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\rand.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\misc\win32\start.c
 
-"$(INTDIR)\start.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\start.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\misc\win32\utf8.c
 
-"$(INTDIR)\utf8.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\utf8.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\misc\unix\version.c
 
-"$(INTDIR)\version.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\version.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\mmap\unix\common.c
 
-"$(INTDIR)\common.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\common.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\mmap\win32\mmap.c
 
-"$(INTDIR)\mmap.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\mmap.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\network_io\unix\inet_ntop.c
 
-"$(INTDIR)\inet_ntop.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\inet_ntop.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\network_io\unix\inet_pton.c
 
-"$(INTDIR)\inet_pton.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\inet_pton.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\network_io\unix\multicast.c
 
-"$(INTDIR)\multicast.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\multicast.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\network_io\win32\sendrecv.c
 
-"$(INTDIR)\sendrecv.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\sendrecv.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\network_io\unix\sockaddr.c
 
-"$(INTDIR)\sockaddr.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\sockaddr.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\network_io\unix\socket_util.c
 
-"$(INTDIR)\socket_util.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\socket_util.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\network_io\win32\sockets.c
 
-"$(INTDIR)\sockets.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\sockets.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\network_io\win32\sockopt.c
 
-"$(INTDIR)\sockopt.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\sockopt.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\passwd\apr_getpass.c
 
-"$(INTDIR)\apr_getpass.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\apr_getpass.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=.\poll\unix\poll.c
+
+"$(INTDIR)\poll.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\poll\unix\pollcb.c
 
-"$(INTDIR)\pollcb.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\pollcb.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\poll\unix\pollset.c
 
-"$(INTDIR)\pollset.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\pollset.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\poll\unix\select.c
 
-"$(INTDIR)\select.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\select.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\random\unix\apr_random.c
 
-"$(INTDIR)\apr_random.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\apr_random.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\random\unix\sha2.c
 
-"$(INTDIR)\sha2.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\sha2.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\random\unix\sha2_glue.c
 
-"$(INTDIR)\sha2_glue.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\sha2_glue.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\shmem\win32\shm.c
 
-"$(INTDIR)\shm.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\shm.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\strings\apr_cpystrn.c
 
-"$(INTDIR)\apr_cpystrn.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\apr_cpystrn.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\strings\apr_fnmatch.c
 
-"$(INTDIR)\apr_fnmatch.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\apr_fnmatch.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\strings\apr_snprintf.c
 
-"$(INTDIR)\apr_snprintf.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\apr_snprintf.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\strings\apr_strings.c
 
-"$(INTDIR)\apr_strings.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\apr_strings.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\strings\apr_strnatcmp.c
 
-"$(INTDIR)\apr_strnatcmp.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\apr_strnatcmp.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\strings\apr_strtok.c
 
-"$(INTDIR)\apr_strtok.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\apr_strtok.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\tables\apr_hash.c
 
-"$(INTDIR)\apr_hash.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\apr_hash.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\tables\apr_tables.c
 
-"$(INTDIR)\apr_tables.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\apr_tables.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\threadproc\win32\proc.c
 
-"$(INTDIR)\proc.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\proc.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\threadproc\win32\signals.c
 
-"$(INTDIR)\signals.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\signals.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\threadproc\win32\thread.c
 
-"$(INTDIR)\thread.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\thread.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\threadproc\win32\threadpriv.c
 
-"$(INTDIR)\threadpriv.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
-	$(CPP) $(CPP_PROJ) $(SOURCE)
-
-
-SOURCE=.\time\win32\access.c
-
-"$(INTDIR)\access.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\threadpriv.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\time\win32\time.c
 
-"$(INTDIR)\time.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\time.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\time\win32\timestr.c
 
-"$(INTDIR)\timestr.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\timestr.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\user\win32\groupinfo.c
 
-"$(INTDIR)\groupinfo.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\groupinfo.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 SOURCE=.\user\win32\userinfo.c
 
-"$(INTDIR)\userinfo.obj" : $(SOURCE) "$(INTDIR)" ".\include\apr.h"
+"$(INTDIR)\userinfo.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
@@ -1710,7 +1710,7 @@ SOURCE=.\include\apr.hw
 
 InputPath=.\include\apr.hw
 
-".\include\apr.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+{$(INCLUDE)}"apr.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
 	<<tempfile.bat 
 	@echo off 
 	type .\include\apr.hw > .\include\apr.h
@@ -1721,7 +1721,7 @@ InputPath=.\include\apr.hw
 
 InputPath=.\include\apr.hw
 
-".\include\apr.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+{$(INCLUDE)}"apr.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
 	<<tempfile.bat 
 	@echo off 
 	type .\include\apr.hw > .\include\apr.h
@@ -1732,7 +1732,7 @@ InputPath=.\include\apr.hw
 
 InputPath=.\include\apr.hw
 
-".\include\apr.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+{$(INCLUDE)}"apr.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
 	<<tempfile.bat 
 	@echo off 
 	type .\include\apr.hw > .\include\apr.h
@@ -1743,7 +1743,7 @@ InputPath=.\include\apr.hw
 
 InputPath=.\include\apr.hw
 
-".\include\apr.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+{$(INCLUDE)}"apr.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
 	<<tempfile.bat 
 	@echo off 
 	type .\include\apr.hw > .\include\apr.h
@@ -1754,7 +1754,7 @@ InputPath=.\include\apr.hw
 
 InputPath=.\include\apr.hw
 
-".\include\apr.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+{$(INCLUDE)}"apr.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
 	<<tempfile.bat 
 	@echo off 
 	type .\include\apr.hw > .\include\apr.h
@@ -1765,7 +1765,7 @@ InputPath=.\include\apr.hw
 
 InputPath=.\include\apr.hw
 
-".\include\apr.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+{$(INCLUDE)}"apr.h" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
 	<<tempfile.bat 
 	@echo off 
 	type .\include\apr.hw > .\include\apr.h
