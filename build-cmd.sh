@@ -63,7 +63,7 @@ case "$AUTOBUILD_PLATFORM" in
     cp "apr-util/Debug/libaprutil_src.pdb" "$DEBUG_OUT_DIR" || exit 1
     cp "apr-util/Release/libaprutil_src.pdb" "$RELEASE_OUT_DIR" || exit 1
 
-	INCLUDE_DIR="$STAGING_DIR/include/apr-1"
+    INCLUDE_DIR="$STAGING_DIR/include/apr-1"
     mkdir -p "$INCLUDE_DIR"
     cp apr/include/*.h "$INCLUDE_DIR"
     cp apr-iconv/include/*.h "$INCLUDE_DIR"
@@ -78,15 +78,20 @@ case "$AUTOBUILD_PLATFORM" in
 'darwin')
     PREFIX="$STAGING_DIR"
     
+    opts='-arch i386 -iwithsysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5'
+    export CFLAGS="$opts"
+    export CXXFLAGS="$opts"
+    export LDFLAGS="$opts"
+
     pushd "$TOP_DIR/apr"
-    CC="gcc-4.2" CFLAGS="-arch i386 -iwithsysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5" \
+    CC="gcc-4.2" \
         ./configure --prefix="$PREFIX"
     make
     make install
     popd
     
     pushd "$TOP_DIR/apr-util"
-    CC="gcc-4.2" CFLAGS="-arch i386 -iwithsysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5" \
+    CC="gcc-4.2" \
         ./configure --prefix="$PREFIX" --with-apr="$PREFIX" \
         --with-expat="$PREFIX"
     make
@@ -121,8 +126,8 @@ case "$AUTOBUILD_PLATFORM" in
     LDFLAGS="-m32" CFLAGS="-m32" CXXFLAGS="-m32" ./configure --prefix="$PREFIX" --with-apr="$PREFIX" \
         --with-expat="$PREFIX"
     make
-	make install
-	popd
+    make install
+    popd
 
     mv "$PREFIX/lib" "$PREFIX/release"
     mkdir -p "$PREFIX/lib"
