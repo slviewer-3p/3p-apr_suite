@@ -1,0 +1,9 @@
+syntax: glob
+stage/
+autobuild-parabuild-bootstrap/
+.*.swp
+apr-iconv/build/rules.mk
+apr-iconv/lib/apr_iconv_private.h
+apr-util/config.nice
+apr/config.nice
+

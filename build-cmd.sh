@@ -113,22 +113,119 @@ case "$AUTOBUILD_PLATFORM" in
 'linux')
     PREFIX="$STAGING_DIR"
 
+	# do release builds
     pushd "$TOP_DIR/apr"
-    LDFLAGS="-m32" CFLAGS="-m32" CXXFLAGS="-m32" ./configure --prefix="$PREFIX"
-    make
-    make install
+		LDFLAGS="-m32" CFLAGS="-m32 -O3" CXXFLAGS="-m32 -O3" ./configure --prefix="$PREFIX" --libdir="$PREFIX/lib/release"
+		make
+		make install
     popd
+
+	pushd "$TOP_DIR/apr-iconv"
+		# NOTE: the autotools scripts in iconv don't honor the --libdir switch so we
+		# need to build to a dummy prefix and copy the files into the correct place
+		mkdir "$PREFIX/iconv"
+		LDFLAGS="-m32" CFLAGS="-m32 -O3" CXXFLAGS="-m32 -O3" ./configure --prefix="$PREFIX/iconv" --with-apr="../apr"
+		make
+		make install
+
+		# move the files into place
+		mkdir -p "$PREFIX/bin"
+		cp -a "$PREFIX"/iconv/lib/* "$PREFIX/lib/release"
+		cp -r "$PREFIX/iconv/include/apr-1" "$PREFIX/include/"
+		cp "$PREFIX/iconv/bin/apriconv" "$PREFIX/bin/"
+		rm -rf "$PREFIX/iconv"
+	popd
 
     pushd "$TOP_DIR/apr-util"
-    LDFLAGS="-m32" CFLAGS="-m32" CXXFLAGS="-m32" ./configure --prefix="$PREFIX" --with-apr="$PREFIX" \
-        --with-expat="$PREFIX"
-    make
-    make install
+		# the autotools can't find the expat static lib with the layout of our
+		# libraries so we need to copy the file to the correct location temporarily
+		cp "$PREFIX/packages/lib/release/libexpat.a" "$PREFIX/packages/lib/"
+
+		# the autotools for apr-util don't honor the --libdir switch so we
+		# need to build to a dummy prefix and copy the files into the correct place
+		mkdir "$PREFIX/util"
+		LDFLAGS="-m32" CFLAGS="-m32 -O3" CXXFLAGS="-m32 -O3" ./configure --prefix="$PREFIX/util" --with-apr="../apr" --with-apr-iconv="../apr-iconv" --with-expat="$PREFIX/packages/"
+		make
+		make install
+
+		# move files into place
+		mkdir -p "$PREFIX/bin"
+		cp -a "$PREFIX"/util/lib/* "$PREFIX/lib/release/"
+		cp -r "$PREFIX/util/include/apr-1" "$PREFIX/include/"
+		cp "$PREFIX"/util/bin/* "$PREFIX/bin/"
+		rm -rf "$PREFIX/util"
+		rm -rf "$PREFIX/packages/lib/libexpat.a"
     popd
 
-    mv "$PREFIX/lib" "$PREFIX/release"
-    mkdir -p "$PREFIX/lib"
-    mv "$PREFIX/release" "$PREFIX/lib"
+    pushd "$TOP_DIR/apr"
+		make distclean
+    popd
+	pushd "$TOP_DIR/apr-iconv"
+		make distclean
+    popd
+    pushd "$TOP_DIR/apr-util"
+		make distclean
+    popd
+
+	# do release builds
+    pushd "$TOP_DIR/apr"
+		LDFLAGS="-m32" CFLAGS="-m32 -O0 -gstabs+" CXXFLAGS="-m32 -O0 -gstabs+" ./configure --prefix="$PREFIX" --libdir="$PREFIX/lib/debug"
+		make
+		make install
+    popd
+
+	pushd "$TOP_DIR/apr-iconv"
+		# NOTE: the autotools scripts in iconv don't honor the --libdir switch so we
+		# need to build to a dummy prefix and copy the files into the correct place
+		mkdir "$PREFIX/iconv"
+		LDFLAGS="-m32" CFLAGS="-m32 -O0 -gstabs+" CXXFLAGS="-m32 -O0 -gstabs+" ./configure --prefix="$PREFIX/iconv" --with-apr="../apr"
+		make
+		make install
+
+		# move the files into place
+		mkdir -p "$PREFIX/bin"
+		cp -a "$PREFIX"/iconv/lib/* "$PREFIX/lib/debug"
+		cp -r "$PREFIX/iconv/include/apr-1" "$PREFIX/include/"
+		cp "$PREFIX/iconv/bin/apriconv" "$PREFIX/bin/"
+		rm -rf "$PREFIX/iconv"
+	popd
+
+    pushd "$TOP_DIR/apr-util"
+		# the autotools can't find the expat static lib with the layout of our
+		# libraries so we need to copy the file to the correct location temporarily
+		cp "$PREFIX/packages/lib/release/libexpat.a" "$PREFIX/packages/lib/"
+
+		# the autotools for apr-util don't honor the --libdir switch so we
+		# need to build to a dummy prefix and copy the files into the correct place
+		mkdir "$PREFIX/util"
+		LDFLAGS="-m32" CFLAGS="-m32 -O0 -gstabs+" CXXFLAGS="-m32 -O0 -gstabs+" ./configure --prefix="$PREFIX/util" --with-apr="../apr" --with-apr-iconv="../apr-iconv" --with-expat="$PREFIX/packages/"
+		make
+		make install
+
+		# move files into place
+		mkdir -p "$PREFIX/bin"
+		cp -a "$PREFIX"/util/lib/* "$PREFIX/lib/debug/"
+		cp -r "$PREFIX/util/include/apr-1" "$PREFIX/include/"
+		cp "$PREFIX"/util/bin/* "$PREFIX/bin/"
+		rm -rf "$PREFIX/util"
+		rm -rf "$PREFIX/packages/lib/libexpat.a"
+    popd
+
+	# APR includes its own expat.h header that doesn't have all of the features
+	# in the expat library that we have a dependency
+	cp "$PREFIX/packages/include/expat/expat_external.h" "$PREFIX/include/apr-1/"
+	cp "$PREFIX/packages/include/expat/expat.h" "$PREFIX/include/apr-1/"
+
+	# clean 
+    pushd "$TOP_DIR/apr"
+		make distclean
+    popd
+	pushd "$TOP_DIR/apr-iconv"
+		make distclean
+    popd
+    pushd "$TOP_DIR/apr-util"
+		make distclean
+    popd
 ;;
 esac
 

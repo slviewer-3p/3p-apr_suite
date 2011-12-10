@@ -1,6 +1,53 @@
 <?xml version="1.0" ?>
 <llsd>
 <map>
+    <key>installables</key>
+    <map>
+      <key>expat</key>
+      <map>
+        <key>name</key>
+        <string>expat</string>
+        <key>platforms</key>
+        <map>
+          <key>darwin</key>
+          <map>
+            <key>archive</key>
+            <map>
+              <key>hash</key>
+              <string>552aa6f936a254e4ad03ee4f68e99cfd</string>
+              <key>url</key>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/3p-expat/rev/246510/arch/Darwin/installer/expat-2.0.1-darwin-20111209.tar.bz2</string>
+            </map>
+            <key>name</key>
+            <string>darwin</string>
+          </map>
+          <key>linux</key>
+          <map>
+            <key>archive</key>
+            <map>
+              <key>hash</key>
+              <string>f725a725a20514963e3aa35fd8c35481</string>
+              <key>url</key>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/3p-expat/rev/246510/arch/Linux/installer/expat-2.0.1-linux-20111209.tar.bz2</string>
+            </map>
+            <key>name</key>
+            <string>linux</string>
+          </map>
+          <key>windows</key>
+          <map>
+            <key>archive</key>
+            <map>
+              <key>hash</key>
+              <string>d95c1e91df370e2389fd8a6eec97e4a8</string>
+              <key>url</key>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/3p-expat/rev/246510/arch/CYGWIN/installer/expat-2.0.1-windows-20111209.tar.bz2</string>
+            </map>
+            <key>name</key>
+            <string>windows</string>
+          </map>
+        </map>
+      </map>
+    </map>
     <key>package_description</key>
     <map>
       <key>description</key>
@@ -84,6 +131,9 @@
             <string>lib/release/*.so</string>
             <string>lib/release/*.so.*</string>
             <string>lib/release/*.a</string>
+            <string>lib/debug/*.so</string>
+            <string>lib/debug/*.so.*</string>
+            <string>lib/debug/*.a</string>
           </array>
           <key>name</key>
           <string>linux</string>
