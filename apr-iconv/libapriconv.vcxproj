@@ -149,11 +149,10 @@
       <OutputFile>Release\libapriconv-1.dll</OutputFile>
       <ImportLibrary>Release\libapriconv-1.lib</ImportLibrary>
       <BaseAddress>0x6EE50000</BaseAddress>
-      <AdditionalDependencies>kernel32.lib;advapi32.lib;libapr-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /MACHINE:X86</AdditionalOptions>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>..\apr\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -251,10 +250,9 @@
       <OutputFile>.\Debug\libapriconv-1.dll</OutputFile>
       <ImportLibrary>Debug\libapriconv-1.lib</ImportLibrary>
       <BaseAddress>0x6EE50000</BaseAddress>
-      <AdditionalDependencies>kernel32.lib;advapi32.lib;libapr-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /MACHINE:X86</AdditionalOptions>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>..\apr\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -2,65 +2,65 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{dd5c8bcd-a476-43a7-9ffa-9e5117dbcd5b}</UniqueIdentifier>
+      <UniqueIdentifier>{423c0074-4622-40fb-ae1e-5f3ef8b718b0}</UniqueIdentifier>
       <Extensions>.c</Extensions>
     </Filter>
     <Filter Include="Source Files\atomic">
-      <UniqueIdentifier>{64a492fa-6937-410a-a0b1-19b2233354ae}</UniqueIdentifier>
+      <UniqueIdentifier>{6bbd8668-11a7-4a4b-9b13-8083aa1f0112}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\dso">
-      <UniqueIdentifier>{2cef30ee-e7f7-4510-880a-e2c2efbf3b90}</UniqueIdentifier>
+      <UniqueIdentifier>{5f004ca6-244f-40d9-a520-b7f0a7e5d948}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\file_io">
-      <UniqueIdentifier>{167603fd-51c9-4694-8425-48366ded4a0c}</UniqueIdentifier>
+      <UniqueIdentifier>{59bde38f-f4c7-4f44-96f7-06fb0409f674}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\locks">
-      <UniqueIdentifier>{966501c3-5a4b-403d-9477-9f49333d7e8f}</UniqueIdentifier>
+      <UniqueIdentifier>{17ffd64a-251c-44da-86fd-f627102e558a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\memory">
-      <UniqueIdentifier>{03629892-0aed-49b5-b91a-ad2d7aa264fb}</UniqueIdentifier>
+      <UniqueIdentifier>{13658dbf-7669-4192-a48c-3481f028707a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\misc">
-      <UniqueIdentifier>{91e73c36-16ef-4ab5-8e1f-b26a31b1760e}</UniqueIdentifier>
+      <UniqueIdentifier>{b4eef238-6ce6-4b20-bb1e-861256470d1f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\mmap">
-      <UniqueIdentifier>{12ebc606-23c6-4d97-8c61-204ed31c3719}</UniqueIdentifier>
+      <UniqueIdentifier>{374f9f2b-2e5e-4654-8afe-fc62dfdc4786}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\network_io">
-      <UniqueIdentifier>{e08e0b9d-f67f-44e2-b641-39772f382f5b}</UniqueIdentifier>
+      <UniqueIdentifier>{942fcd3e-c26e-4e86-aea5-a0f0ca94e9ff}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\passwd">
-      <UniqueIdentifier>{3b24db1b-380b-4f3e-a823-a7dcb16249b2}</UniqueIdentifier>
+      <UniqueIdentifier>{92b7081f-40e6-48f7-ba5f-947b90c0c4e3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\poll">
-      <UniqueIdentifier>{5f9d1581-4a9c-44ee-94b3-381fdca80f07}</UniqueIdentifier>
+      <UniqueIdentifier>{f9c71faa-87b5-4ba9-942f-79892a53b8dc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\random">
-      <UniqueIdentifier>{6956f824-419a-4623-928b-1edf9277770b}</UniqueIdentifier>
+      <UniqueIdentifier>{cce2d83d-410d-4460-9124-2e214f9bdf38}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\shmem">
-      <UniqueIdentifier>{7c2902e0-40ae-4f56-a4f1-9d2e8af67757}</UniqueIdentifier>
+      <UniqueIdentifier>{96bdc7e6-9e23-4544-a5f8-defc885867c7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\strings">
-      <UniqueIdentifier>{15588db3-5354-4830-a373-2d65e353ddfd}</UniqueIdentifier>
+      <UniqueIdentifier>{5307e445-bcdc-4d24-ab7a-f0f64c5463d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\tables">
-      <UniqueIdentifier>{5ca39bdd-7af5-4744-a8a9-c1094d1d9d5c}</UniqueIdentifier>
+      <UniqueIdentifier>{540edb5b-9f1e-478c-96e6-254a7fcc78b6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\threadproc">
-      <UniqueIdentifier>{8cd7800c-943a-4e76-a4bf-292016d09f47}</UniqueIdentifier>
+      <UniqueIdentifier>{f6d0c0eb-10a9-4a54-adfe-e9b5dc62ff84}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\time">
-      <UniqueIdentifier>{917729fe-d91d-4a46-9e8b-b72dd0a57040}</UniqueIdentifier>
+      <UniqueIdentifier>{42a4eaa2-7182-47bc-88aa-657aff265623}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user">
-      <UniqueIdentifier>{98d1afb3-ad1e-4137-b6e4-23a7a2df7dc6}</UniqueIdentifier>
+      <UniqueIdentifier>{bc9fa0ae-2396-4087-bc5b-ff7bd94c9549}</UniqueIdentifier>
     </Filter>
     <Filter Include="Private Header Files">
-      <UniqueIdentifier>{0ffd256a-d413-467e-82e2-8ec45fffab35}</UniqueIdentifier>
+      <UniqueIdentifier>{16cc4336-cf65-4d1d-aa21-041dcb87c605}</UniqueIdentifier>
     </Filter>
     <Filter Include="Public Header Files">
-      <UniqueIdentifier>{7485f79f-e93b-48d4-b7ca-957503879b07}</UniqueIdentifier>
+      <UniqueIdentifier>{4c06fc05-9bfe-4ac6-9ae5-8f131e8ab076}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +205,9 @@
     <ClCompile Include="passwd\apr_getpass.c">
       <Filter>Source Files\passwd</Filter>
     </ClCompile>
+    <ClCompile Include="poll\unix\poll.c">
+      <Filter>Source Files\poll</Filter>
+    </ClCompile>
     <ClCompile Include="poll\unix\pollcb.c">
       <Filter>Source Files\poll</Filter>
     </ClCompile>
@@ -261,9 +264,6 @@
     </ClCompile>
     <ClCompile Include="threadproc\win32\threadpriv.c">
       <Filter>Source Files\threadproc</Filter>
-    </ClCompile>
-    <ClCompile Include="time\win32\access.c">
-      <Filter>Source Files\time</Filter>
     </ClCompile>
     <ClCompile Include="time\win32\time.c">
       <Filter>Source Files\time</Filter>
