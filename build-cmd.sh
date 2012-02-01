@@ -44,8 +44,8 @@ case "$AUTOBUILD_PLATFORM" in
     build_sln "apr-util/aprutil.sln" "Debug|Win32"    "libaprutil" || exit 1
     build_sln "apr-util/aprutil.sln" "Release|Win32"  "libaprutil" || exit 1
     
-    mkdir -p "$DEBUG_OUT_DIR"
-    mkdir -p "$RELEASE_OUT_DIR"
+    mkdir -p "$DEBUG_OUT_DIR"   || echo "$DEBUG_OUT_DIR exists"
+    mkdir -p "$RELEASE_OUT_DIR" || echo "$RELEASE_OUT_DIR exists"
     cp "apr/LibD/apr-1.lib" "$DEBUG_OUT_DIR" || exit 1
     cp "apr/LibR/apr-1.lib" "$RELEASE_OUT_DIR" || exit 1
     cp "apr-util/LibD/aprutil-1.lib" "$DEBUG_OUT_DIR" || exit 1
@@ -64,14 +64,14 @@ case "$AUTOBUILD_PLATFORM" in
     cp "apr-util/Release/libaprutil_src.pdb" "$RELEASE_OUT_DIR" || exit 1
 
     INCLUDE_DIR="$STAGING_DIR/include/apr-1"
-    mkdir -p "$INCLUDE_DIR"
+    mkdir -p "$INCLUDE_DIR"      || echo "$INCLUDE_DIR exists"
     cp apr/include/*.h "$INCLUDE_DIR"
     cp apr-iconv/include/*.h "$INCLUDE_DIR"
     cp apr-util/include/*.h "$INCLUDE_DIR"
-    mkdir "$INCLUDE_DIR/arch"
+    mkdir "$INCLUDE_DIR/arch"    || echo "$INCLUDE_DIR/arch exists"
     cp apr/include/arch/apr_private_common.h "$INCLUDE_DIR/arch"
     cp -R "apr/include/arch/win32" "$INCLUDE_DIR/arch"
-    mkdir "$INCLUDE_DIR/private"
+    mkdir "$INCLUDE_DIR/private" || echo "$INCLUDE_DIR/private exists"
     cp -R apr-util/include/private "$INCLUDE_DIR"
     popd
 ;;
