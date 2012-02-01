@@ -121,7 +121,7 @@ case "$AUTOBUILD_PLATFORM" in
 
     pushd "$TOP_DIR/apr-util"
     LDFLAGS="-m32" CFLAGS="-m32" CXXFLAGS="-m32" ./configure --prefix="$PREFIX" --with-apr="$PREFIX" \
-        --with-expat="$PREFIX"
+        --with-expat=builtin
     make
     make install
     popd
