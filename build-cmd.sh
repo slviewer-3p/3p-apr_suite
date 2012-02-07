@@ -105,10 +105,10 @@ case "$AUTOBUILD_PLATFORM" in
         # As of 2012-02-07, with APR 1.4.5, this function has been observed to
         # fail on TeamCity builds. Does the failure matter? Hopefully not...
         fix_dylib_id $lib || echo "fix_dylib_id $lib failed, proceeding"
-        
-        # Somehow a strange dependency is introduced into libs dependant on the apr lib.  Fix it.
-        strange_apr="$(otool -L "$lib" | grep 'libapr-1' | awk '{ print $1 }')"
-        install_name_tool -change "$strange_apr" "@loader_path/$(readlink "libapr-1.dylib")" "$lib"
+
+##      # Somehow a strange dependency is introduced into libs dependent on the apr lib.  Fix it.
+##      strange_apr="$(otool -L "$lib" | grep 'libapr-1' | tail -n 1 | awk '{ print $1 }')"
+##      install_name_tool -change "$strange_apr" "@loader_path/$(readlink "libapr-1.dylib")" "$lib"
     done
     popd
 ;;
