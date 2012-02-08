@@ -75,9 +75,10 @@ case "$AUTOBUILD_PLATFORM" in
     cp -R apr-util/include/private "$INCLUDE_DIR"
     popd
 ;;
+
 'darwin')
     PREFIX="$STAGING_DIR"
-    
+
     opts='-arch i386 -iwithsysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5'
 
     pushd "$TOP_DIR/apr"
@@ -86,7 +87,7 @@ case "$AUTOBUILD_PLATFORM" in
     make
     make install
     popd
-    
+
     pushd "$TOP_DIR/apr-util"
     CC="gcc-4.2" CFLAGS="$opts" CXXFLAGS="$opts" LDFLAGS="$opts" \
         ./configure --prefix="$PREFIX" --with-apr="$PREFIX" \
@@ -94,24 +95,78 @@ case "$AUTOBUILD_PLATFORM" in
     make
     make install
     popd
-    
-    mv "$PREFIX/lib" "$PREFIX/release"
-    mkdir -p "$PREFIX/lib"
-    mv "$PREFIX/release" "$PREFIX/lib/release"
-    
-    pushd "$PREFIX/lib/release"
-    for lib in `find . -name "*.dylib"`
-    do
-        # As of 2012-02-07, with APR 1.4.5, this function has been observed to
-        # fail on TeamCity builds. Does the failure matter? Hopefully not...
-        fix_dylib_id $lib || echo "fix_dylib_id $lib failed, proceeding"
 
-##      # Somehow a strange dependency is introduced into libs dependent on the apr lib.  Fix it.
-##      strange_apr="$(otool -L "$lib" | grep 'libapr-1' | tail -n 1 | awk '{ print $1 }')"
-##      install_name_tool -change "$strange_apr" "@loader_path/$(readlink "libapr-1.dylib")" "$lib"
+    # To conform with autobuild install-package conventions, we want to move
+    # the libraries presently in "$PREFIX/lib" to "$PREFIX/lib/release".
+    # We want something like:
+
+    # libapr-1.a
+    # libaprutil-1.a
+    # libapr-1.0.dylib
+    # libapr-1.dylib --> libapr-1.0.dylib
+    # libaprutil-1.0.dylib
+    # libaprutil-1.dylib --> libaprutil-1.0.dylib
+
+    # But as of 2012-02-08, we observe that the real libraries are
+    # libapr-1.0.4.5.dylib and libaprutil-1.0.4.1.dylib, with
+    # libapr[util]-1.0.dylib (as well as libapr[util]-1.dylib) symlinked to
+    # them. That's no good: our Copy3rdPartyLibs.cmake and viewer_manifest.py
+    # scripts don't deal with the libapr[util]-1.0.major.minor.dylib files
+    # directly, they want to manipulate only libapr[util]-1.0.dylib. Fix
+    # things while relocating.
+
+    mkdir -p "$PREFIX/lib/release" || echo "reusing $PREFIX/lib/release"
+    for libname in libapr libaprutil
+    do # First just move the static library, that part is easy
+       mv "$PREFIX/lib/$libname-1.a" "$PREFIX/lib/release/"
+       # Ensure that lib/release/$libname-1.0.dylib is a real file, not a symlink
+       cp "$PREFIX/lib/$libname-1.0.dylib" "$PREFIX/lib/release"
+       # Make sure it's stamped with the -id we need in our app bundle.
+       # As of 2012-02-07, with APR 1.4.5, this function has been observed to
+       # fail on TeamCity builds. Does the failure matter? Hopefully not...
+       pushd "$PREFIX/lib/release"
+       fix_dylib_id "$libname-1.0.dylib" || \
+       echo "fix_dylib_id $libname-1.0.dylib failed, proceeding"
+       popd
+       # Recreate the $libname-1.dylib symlink, because the one in lib/ is
+       # pointing to (e.g.) libapr-1.0.4.5.dylib -- no good
+       ln -svf "$libname-1.0.dylib" "$PREFIX/lib/release/$libname-1.dylib"
+       # Clean up whatever's left in $PREFIX/lib for this $libname (e.g.
+       # libapr-1.0.4.5.dylib)
+       rm "$PREFIX/lib/$libname-"*.dylib || echo "moved all $libname-*.dylib"
     done
-    popd
+
+    # When we linked apr-util against apr (above), it grabbed the -id baked
+    # into libapr-1.0.dylib as of that moment. A libaprutil-1.0.dylib built
+    # that way fails to load because it looks for
+    # "$PREFIX/lib/libapr-1.0.dylib" even on the user's machine. We tried
+    # horsing around with install_name_tool -id between building apr and
+    # building apr-util, but that didn't work too well. Fix it after the fact
+    # with install_name_tool -change.
+
+    # <deep breath>
+
+    # List library dependencies with otool -L. Skip the first two lines (tail
+    # -n +3): the first is otool reporting which library file it's reading,
+    # the second is that library's own -id stamp. Find embedded references to
+    # our own build area (Bad). From each such line, isolate just the
+    # pathname. (Theoretically we could use just awk instead of grep | awk,
+    # but getting awk to deal with the forward-slashes embedded in the
+    # pathname would be a royal pain. Simpler to use grep.) Now emit a -change
+    # switch for each of those pathnames: extract the basename and change it
+    # to the canonical relative Resources path. NOW: feed all those -change
+    # switches into an install_name_tool command operating on that same
+    # .dylib.
+    lib="$PREFIX/lib/release/libaprutil-1.0.dylib"
+    install_name_tool \
+        $(otool -L "$lib" | tail -n +3 | \
+          grep "$PREFIX/lib" | awk '{ print $1 }' | \
+          (while read f; \
+           do echo -change "$f" "@executable_path/../Resources/$(basename "$f")"; \
+           done) ) \
+        "$lib"
 ;;
+
 'linux')
     PREFIX="$STAGING_DIR"
 
