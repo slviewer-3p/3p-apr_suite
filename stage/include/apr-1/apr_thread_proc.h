@@ -499,6 +499,17 @@ APR_DECLARE(apr_status_t) apr_procattr_cmdtype_set(apr_procattr_t *attr,
 APR_DECLARE(apr_status_t) apr_procattr_detach_set(apr_procattr_t *attr, 
                                                  apr_int32_t detach);
 
+/**
+ * Request OS to tie child-process lifespan to parent process.
+ * (Currently supported only on Windows.)
+ * @param attr The procattr we care about.
+ * @param autokill Nonzero means child lifespan will be tied to calling
+ * process lifespan. Default is no.
+ */
+APR_DECLARE(apr_status_t) apr_procattr_autokill_set(apr_procattr_t *attr,
+                                                    apr_int32_t autokill);
+#define APR_HAS_PROCATTR_AUTOKILL_SET 1
+
 #if APR_HAVE_STRUCT_RLIMIT
 /**
  * Set the Resource Utilization limits when starting a new process.

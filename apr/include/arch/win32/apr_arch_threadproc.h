@@ -62,6 +62,7 @@ struct apr_procattr_t {
     LPSECURITY_ATTRIBUTES   sa;
     LPVOID                  sd;
 #endif
+    apr_int32_t autokill;
 };
 
 struct apr_thread_once_t {

@@ -217,6 +217,11 @@ APR_DECLARE(apr_status_t) apr_procattr_detach_set(apr_procattr_t *attr, apr_int3
     return APR_SUCCESS;
 }
 
+APR_DECLARE(apr_status_t) apr_procattr_autokill_set(apr_procattr_t *attr, apr_int32_t autokill)
+{
+    return APR_ENOTIMPL;
+}
+
 #if APR_HAS_FORK
 APR_DECLARE(apr_status_t) apr_proc_fork(apr_proc_t *proc, apr_pool_t *pool)
 {
