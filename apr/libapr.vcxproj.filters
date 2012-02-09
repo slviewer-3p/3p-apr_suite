@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -265,6 +265,8 @@
     <ClCompile Include="threadproc\win32\threadpriv.c">
       <Filter>Source Files\threadproc</Filter>
     </ClCompile>
+<!--
+-->
     <ClCompile Include="time\win32\time.c">
       <Filter>Source Files\time</Filter>
     </ClCompile>
