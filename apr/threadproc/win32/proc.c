@@ -1027,7 +1027,7 @@ static apr_status_t apr_assign_proc_to_jobobject(HANDLE proc)
         // Configure all child processes associated with this new job object
         // to terminate when the calling process (us!) terminates.
         jeli.BasicLimitInformation.LimitFlags = JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
-        if (! SetInformationJobObject(mJob, JobObjectExtendedLimitInformation, &jeli, sizeof(jeli)))
+        if (! SetInformationJobObject(sJob, JobObjectExtendedLimitInformation, &jeli, sizeof(jeli)))
         {
             apr_status_t failcode = apr_get_os_error();
             // This Job Object is useless to us
