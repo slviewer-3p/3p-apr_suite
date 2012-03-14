@@ -330,7 +330,19 @@ APR_DECLARE(apr_status_t) apr_file_write(apr_file_t *thefile, const void *buf, a
             rv = APR_SUCCESS;
         }
         else {
-            (*nbytes) = 0;
+            /* nat 2012-03-14: This else case used to clear *nbytes to 0. That
+             * makes sense only if WriteFile() guarantees never to return
+             * ERROR_IO_PENDING if any bytes were written. Empirically,
+             * though, we observe that at high data volumes we sometimes get
+             * APR_EAGAIN from this function but duplicate data at the other
+             * end of the pipe. In other words, apparently a WriteFile() call
+             * can (partially) succeed despite the APR_EAGAIN return. If we
+             * unconditionally tell the caller that the APR_EAGAIN call wrote
+             * 0 bytes, that logic can only retry the whole apr_file_write()
+             * call -- hence the duplicate data. This edit expresses my hope
+             * that in the case of a partial write, WriteFile() will properly
+             * update bwrote. */
+            (*nbytes) = bwrote;
             rv = apr_get_os_error();
 
             /* XXX: This must be corrected, per the apr_file_read logic!!! */
