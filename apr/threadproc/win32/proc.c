@@ -72,6 +72,7 @@ APR_DECLARE(apr_status_t) apr_procattr_create(apr_procattr_t **new,
     (*new)->pool = pool;
     (*new)->cmdtype = APR_PROGRAM;
     (*new)->autokill = 0;
+    (*new)->inherit = 1;            /* default is on, per previous behavior */
     return APR_SUCCESS;
 }
 
@@ -230,6 +231,12 @@ APR_DECLARE(apr_status_t) apr_procattr_detach_set(apr_procattr_t *attr,
 APR_DECLARE(apr_status_t) apr_procattr_autokill_set(apr_procattr_t *attr, apr_int32_t autokill)
 {
     attr->autokill = autokill;
+    return APR_SUCCESS;
+}
+
+APR_DECLARE(apr_status_t) apr_procattr_inherit_set(apr_procattr_t *attr, apr_int32_t inherit)
+{
+    attr->inherit = inherit;
     return APR_SUCCESS;
 }
 
@@ -888,7 +895,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
                                       wprg, wcmd,
                                       attr->sa,
                                       NULL,
-                                      TRUE,
+                                      attr->inherit,
                                       dwCreationFlags,
                                       pEnvBlock,
                                       wcwd,
@@ -899,7 +906,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
         else {
             rv = CreateProcessW(wprg, wcmd,        /* Executable & Command line */
                                 NULL, NULL,        /* Proc & thread security attributes */
-                                TRUE,              /* Inherit handles */
+                                attr->inherit,     /* Inherit handles */
                                 dwCreationFlags,   /* Creation flags */
                                 pEnvBlock,         /* Environment block */
                                 wcwd,              /* Current directory name */
@@ -930,7 +937,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
 #else /* defined(_WIN32_WCE) */
         rv = CreateProcessW(wprg, wcmd,        /* Executable & Command line */
                             NULL, NULL,        /* Proc & thread security attributes */
-                            FALSE,             /* must be 0 */
+                            FALSE,             /* must be 0 (attr->inherit) */
                             dwCreationFlags,   /* Creation flags */
                             NULL,              /* Environment block must be NULL */
                             NULL,              /* Current directory name must be NULL*/
@@ -972,7 +979,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
 
         rv = CreateProcessA(progname, cmdline, /* Command line */
                             NULL, NULL,        /* Proc & thread security attributes */
-                            TRUE,              /* Inherit handles */
+                            attr->inherit,     /* Inherit handles */
                             dwCreationFlags,   /* Creation flags */
                             pEnvBlock,         /* Environment block */
                             attr->currdir,     /* Current directory name */
