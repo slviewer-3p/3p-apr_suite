@@ -508,7 +508,7 @@ APR_DECLARE(apr_status_t) apr_procattr_detach_set(apr_procattr_t *attr,
  */
 APR_DECLARE(apr_status_t) apr_procattr_autokill_set(apr_procattr_t *attr,
                                                     apr_int32_t autokill);
-#define APR_HAS_PROCATTR_AUTOKILL_SET defined(WIN32)
+#define APR_HAS_PROCATTR_AUTOKILL_SET (defined(WIN32) || defined(_WIN32))
 
 /**
  * Allow this child process to inherit open handles from parent.
@@ -525,7 +525,7 @@ APR_DECLARE(apr_status_t) apr_procattr_autokill_set(apr_procattr_t *attr,
  */
 APR_DECLARE(apr_status_t) apr_procattr_inherit_set(apr_procattr_t *attr,
                                                    apr_int32_t inherit);
-#define APR_HAS_PROCATTR_INHERIT_SET defined(WIN32)
+#define APR_HAS_PROCATTR_INHERIT_SET (defined(WIN32) || defined(_WIN32))
 
 #if APR_HAVE_STRUCT_RLIMIT
 /**
