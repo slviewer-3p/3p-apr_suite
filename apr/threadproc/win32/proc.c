@@ -96,12 +96,14 @@ APR_DECLARE(apr_status_t) apr_procattr_io_set(apr_procattr_t *attr,
 
         if (in == APR_NO_FILE)
             attr->child_in = &no_file;
-        else { 
+        else {
             stat = apr_file_pipe_create_ex(&attr->child_in, &attr->parent_in,
                                            in, attr->pool);
+            if (stat == APR_SUCCESS)
+                stat = apr_file_inherit_unset(attr->parent_in);
+            if (stat == APR_SUCCESS)
+                stat = apr_file_inherit_set(attr->child_in);
         }
-        if (stat == APR_SUCCESS)
-            stat = apr_file_inherit_unset(attr->parent_in);
     }
     if (out && stat == APR_SUCCESS) {
         if (out == APR_NO_FILE)
@@ -109,9 +111,11 @@ APR_DECLARE(apr_status_t) apr_procattr_io_set(apr_procattr_t *attr,
         else { 
             stat = apr_file_pipe_create_ex(&attr->parent_out, &attr->child_out,
                                            out, attr->pool);
+            if (stat == APR_SUCCESS)
+                stat = apr_file_inherit_unset(attr->parent_out);
+            if (stat == APR_SUCCESS)
+                stat = apr_file_inherit_set(attr->child_out);
         }
-        if (stat == APR_SUCCESS)
-            stat = apr_file_inherit_unset(attr->parent_out);
     }
     if (err && stat == APR_SUCCESS) {
         if (err == APR_NO_FILE)
@@ -119,9 +123,11 @@ APR_DECLARE(apr_status_t) apr_procattr_io_set(apr_procattr_t *attr,
         else { 
             stat = apr_file_pipe_create_ex(&attr->parent_err, &attr->child_err,
                                            err, attr->pool);
+            if (stat == APR_SUCCESS)
+                stat = apr_file_inherit_unset(attr->parent_err);
+            if (stat == APR_SUCCESS)
+                stat = apr_file_inherit_set(attr->child_err);
         }
-        if (stat == APR_SUCCESS)
-            stat = apr_file_inherit_unset(attr->parent_err);
     }
     return stat;
 }
