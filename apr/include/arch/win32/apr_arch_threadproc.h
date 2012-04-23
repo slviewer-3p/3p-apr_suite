@@ -63,7 +63,6 @@ struct apr_procattr_t {
     LPVOID                  sd;
 #endif
     apr_int32_t autokill;
-    apr_int32_t inherit;
 };
 
 struct apr_thread_once_t {

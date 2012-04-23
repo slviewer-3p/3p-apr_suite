@@ -522,27 +522,6 @@ APR_DECLARE(apr_status_t) apr_procattr_autokill_set(apr_procattr_t *attr,
 #define APR_HAS_PROCATTR_AUTOKILL_SET 0 // placeholder implementation
 #endif
 
-/**
- * Allow this child process to inherit open handles from parent.
- * (Currently settable only on Windows.)
- * @param attr The procattr we care about.
- * @param inherit Nonzero means child will inherit all inheritable open file
- * handles. Default is yes, preserving previous hardcoded apr_proc_create()
- * behavior: this supports passing additional pipes or other file descriptors
- * beyond stdin, stdout, stderr. The catch is that the previous hardcoded TRUE
- * seems to assume that all file I/O is done through APR and will therefore use
- * apr_file_inherit_set(), etc., to specifically control what handles will be
- * inherited. When you drop apr_proc_create() into a large existing program
- * with very many existing file accesses, this assumption doesn't hold.
- */
-APR_DECLARE(apr_status_t) apr_procattr_inherit_set(apr_procattr_t *attr,
-                                                   apr_int32_t inherit);
-#if defined(WIN32) || defined(_WIN32)
-#define APR_HAS_PROCATTR_INHERIT_SET 1 // useful implementation
-#else
-#define APR_HAS_PROCATTR_INHERIT_SET 0 // placeholder implementation
-#endif
-
 #if APR_HAVE_STRUCT_RLIMIT
 /**
  * Set the Resource Utilization limits when starting a new process.
