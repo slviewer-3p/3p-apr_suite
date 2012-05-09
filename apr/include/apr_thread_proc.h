@@ -522,6 +522,32 @@ APR_DECLARE(apr_status_t) apr_procattr_autokill_set(apr_procattr_t *attr,
 #define APR_HAS_PROCATTR_AUTOKILL_SET 0 // placeholder implementation
 #endif
 
+/**
+ * Request apr_proc_create() to constrain the set of handles passed to the
+ * child process. On Windows, with an ordinary CreateProcess() call, you get
+ * two choices: pass NO handles (bInheritHandles=FALSE), or pass ALL
+ * currently-open handles, from anywhere in the process (including libraries!)
+ * -- except those specifically marked with HANDLE_FLAG_INHERIT 0.
+ * apr_proc_create(), which promises to provide the child process with stdin,
+ * stdout, stderr, normally passes bInheritHandles=TRUE. But std::ofstream et
+ * al. open files as inheritable, and provide no API by which to mark them
+ * otherwise. And since Windows prevents certain operations on files held open
+ * by any process, even if inadvertently, confusing bugs ensue.
+ * Calling apr_procattr_constrain_handle_set(attr, 1) engages obscure
+ * Windows machinery to specifically pass stdin, stdout, stderr -- but no
+ * other handles.
+ * See http://blogs.msdn.com/b/oldnewthing/archive/2011/12/16/10248328.aspx .
+ * apr_procattr_constrain_handle_set() currently only affects apr_proc_create()
+ * on Windows.
+ * @param attr The procattr we care about.
+ * @param constrain On Windows, nonzero means to explicitly constrain the set
+ * of handles passed to the new child process. Default is 0, like unmodified
+ * APR.
+ */
+APR_DECLARE(apr_status_t) apr_procattr_constrain_handle_set(apr_procattr_t *attr,
+                                                            apr_int32_t constrain);
+#define APR_HAS_PROCATTR_CONSTRAIN_HANDLE_SET 1 // extension is present
+
 #if APR_HAVE_STRUCT_RLIMIT
 /**
  * Set the Resource Utilization limits when starting a new process.

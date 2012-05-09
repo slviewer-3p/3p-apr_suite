@@ -221,6 +221,12 @@ APR_DECLARE(apr_status_t) apr_procattr_autokill_set(apr_procattr_t *attr, apr_in
     return APR_ENOTIMPL;
 }
 
+APR_DECLARE(apr_status_t) apr_procattr_constrain_handle_set(apr_procattr_t *attr,
+                                                            apr_int32_t constrain)
+{
+    return APR_SUCCESS;
+}
+
 APR_DECLARE(apr_status_t) apr_proc_fork(apr_proc_t *proc, apr_pool_t *pool)
 {
     int pid;
