@@ -962,7 +962,8 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
                                               dwCreationFlags,
                                               pEnvBlock,
                                               wcwd,
-                                              &si, &pi);
+                                              (LPSTARTUPINFOW)(&si),
+                                              &pi);
 
                     RevertToSelf();
                 }
@@ -974,7 +975,8 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
                                     dwCreationFlags,   /* Creation flags */
                                     pEnvBlock,         /* Environment block */
                                     wcwd,              /* Current directory name */
-                                    &si, &pi);
+                                    (LPSTARTUPINFOW)(&si),
+                                    &pi);
             }
         }
 
@@ -1079,7 +1081,8 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
                                 dwCreationFlags,   /* Creation flags */
                                 pEnvBlock,         /* Environment block */
                                 attr->currdir,     /* Current directory name */
-                                &si, &pi);
+                                (LPSTARTUPINFOA)(&si),
+                                &pi);
         }
 
         /* Clean up si.lpAttributeList if we set it */
