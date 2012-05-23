@@ -480,6 +480,39 @@ APR_DECLARE_LATE_DLL_FUNC(DLL_WINBASEAPI, BOOL, WINAPI, SetDllDirectoryW, 0, (
     (lpPathName));
 #define SetDllDirectoryW apr_winapi_SetDllDirectoryW
 
+#ifdef InitializeProcThreadAttributeList
+#undef InitializeProcThreadAttributeList
+#endif
+APR_DECLARE_LATE_DLL_FUNC(DLL_WINBASEAPI, BOOL, WINAPI, InitializeProcThreadAttributeList, 0, (
+    __out_opt  LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList,
+    __in       DWORD                        dwAttributeCount,
+    __reserved DWORD                        dwFlags,
+    __inout    PSIZE_T                      lpSize),
+    (lpAttributeList, dwAttributeCount, dwFlags, lpSize));
+#define InitializeProcThreadAttributeList apr_winapi_InitializeProcThreadAttributeList
+
+#ifdef UpdateProcThreadAttribute
+#undef UpdateProcThreadAttribute
+#endif
+APR_DECLARE_LATE_DLL_FUNC(DLL_WINBASEAPI, BOOL, WINAPI, UpdateProcThreadAttribute, 0, (
+   __inout     LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList,
+   __in        DWORD                        dwFlags,
+   __in        DWORD_PTR                    Attribute,
+   __in        PVOID                        lpValue,
+   __in        SIZE_T                       cbSize,
+   __out_opt   PVOID                        lpPreviousValue,
+   __in_opt    PSIZE_T                      lpReturnSize),
+   (lpAttributeList, dwFlags, Attribute, lpValue, cbSize, lpPreviousValue, lpReturnSize));
+#define UpdateProcThreadAttribute apr_winapi_UpdateProcThreadAttribute
+
+#ifdef DeleteProcThreadAttributeList
+#undef DeleteProcThreadAttributeList
+#endif
+APR_DECLARE_LATE_DLL_FUNC(DLL_WINBASEAPI, VOID, WINAPI, DeleteProcThreadAttributeList, 0, (
+    __inout    LPPROC_THREAD_ATTRIBUTE_LIST lpAttributeList),
+    (lpAttributeList));
+#define DeleteProcThreadAttributeList apr_winapi_DeleteProcThreadAttributeList
+
 #endif /* !defined(_WIN32_WCE) */
 
 #endif  /* ! MISC_H */
