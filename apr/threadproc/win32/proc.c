@@ -806,7 +806,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
         STARTUPINFOEXW si;
         HANDLE inherit[3];          /* stdin, stdout, stderr */
         DWORD inherit_cnt = 0;      /* slots used in 'inherit' */
-        BOOL  bInheritHandles = FALSE;
+        BOOL  bInheritHandles = TRUE; /* like vanilla APR */
         DWORD stdin_reset = 0;
         DWORD stdout_reset = 0;
         DWORD stderr_reset = 0;
@@ -955,15 +955,15 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
             /* Caller wants us to strictly constrain handles passed to child */
             if (! inherit_cnt)
             {
-                apr_log("  attr->constrain but no handles");
+                /* If 'inherit' is empty, simply turn off bInheritHandles. */
+                apr_log("  attr->constrain but no handles: bInheritHandles = FALSE");
+                bInheritHandles = FALSE;
             }
             else
             {
                 apr_log("  attr->constrain with %d handles: "
-                        "bInheritHandles = TRUE, setting EXTENDED_STARTUPINFO_PRESENT",
+                        "setting EXTENDED_STARTUPINFO_PRESENT",
                         inherit_cnt);
-                /* 'inherit' non-empty: turn on bInheritHandles */
-                bInheritHandles = TRUE;
                 /* We need STARTUPINFOEXW::lpAttributeList. Confess to
                    CreateProcessW() that it's really a STARTUPINFOEXW rather
                    than a vanilla STARTUPINFOW. */
@@ -1068,7 +1068,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
         STARTUPINFOEXA si;
         HANDLE inherit[3];          /* stdin, stdout, stderr */
         DWORD inherit_cnt = 0;      /* slots used in 'inherit' */
-        BOOL  bInheritHandles = FALSE;
+        BOOL  bInheritHandles = TRUE; /* like vanilla APR */
         /* clear ALL of STARTUPINFOEXA... */
         memset(&si, 0, sizeof(si));
         /* but for the moment, only tell CreateProcessA() about its
@@ -1110,15 +1110,15 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
             /* Caller wants us to strictly constrain handles passed to child */
             if (! inherit_cnt)
             {
-                apr_log("  attr->constrain but no handles");
+                /* If 'inherit' is empty, simply turn off bInheritHandles. */
+                apr_log("  attr->constrain but no handles: bInheritHandles = FALSE");
+                bInheritHandles = FALSE;
             }
             else
             {
                 apr_log("  attr->constrain with %d handles: "
-                        "bInheritHandles = TRUE, setting EXTENDED_STARTUPINFO_PRESENT",
+                        "setting EXTENDED_STARTUPINFO_PRESENT",
                         inherit_cnt);
-                /* 'inherit' non-empty: turn on bInheritHandles */
-                bInheritHandles = TRUE;
                 /* We need STARTUPINFOEXA::lpAttributeList. Confess to
                    CreateProcessA() that it's really a STARTUPINFOEXA rather
                    than a vanilla STARTUPINFOA. */
