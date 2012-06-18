@@ -154,6 +154,9 @@
     <ClCompile Include="misc\win32\internal.c">
       <Filter>Source Files\misc</Filter>
     </ClCompile>
+    <ClCompile Include="misc\win32\log.c">
+      <Filter>Source Files\log</Filter>
+    </ClCompile>
     <ClCompile Include="misc\win32\misc.c">
       <Filter>Source Files\misc</Filter>
     </ClCompile>

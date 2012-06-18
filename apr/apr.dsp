@@ -332,6 +332,10 @@ SOURCE=.\misc\win32\internal.c
 # End Source File
 # Begin Source File
 
+SOURCE=.\misc\win32\log.c
+# End Source File
+# Begin Source File
+
 SOURCE=.\misc\win32\misc.c
 # End Source File
 # Begin Source File

@@ -1458,6 +1458,12 @@ SOURCE=.\misc\win32\internal.c
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
+SOURCE=.\misc\win32\log.c
+
+"$(INTDIR)\log.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
 SOURCE=.\misc\win32\misc.c
 
 "$(INTDIR)\misc.obj" : $(SOURCE) "$(INTDIR)" {$(INCLUDE)}"apr.h"

@@ -473,6 +473,11 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> /EHsc   /EHsc </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> /EHsc   /EHsc </AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="misc\win32\log.c">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug9x|Win32'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> /EHsc   /EHsc </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> /EHsc   /EHsc </AdditionalOptions>
+    </ClCompile>
     <ClCompile Include="misc\win32\misc.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug9x|Win32'"> /EHsc   /EHsc </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> /EHsc   /EHsc </AdditionalOptions>
