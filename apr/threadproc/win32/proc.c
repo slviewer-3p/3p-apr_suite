@@ -41,6 +41,7 @@
 #if APR_HAVE_PROCESS_H
 #include <process.h>
 #endif
+#include "apr_log.h"
 
 /* Heavy on no'ops, here's what we want to pass if there is APR_NO_FILE
  * requested for a specific child handle;
@@ -503,6 +504,22 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
     PROCESS_INFORMATION pi;
     DWORD dwCreationFlags = 0;
 
+    apr_log("apr_proc_create(%s):", apr_logstr(progname));
+    if (args)
+    {
+        size_t i;
+        apr_log("  args:");
+        for (i = 0; args[i]; ++i)
+            apr_log("    '%s'", args[i]);
+    }
+    if (env)
+    {
+        size_t i;
+        apr_log("  env:");
+        for (i = 0; env[i]; ++i)
+            apr_log("    '%s'", env[i]);
+    }
+
     new->in = attr->parent_in;
     new->out = attr->parent_out;
     new->err = attr->parent_err;
@@ -516,6 +533,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
          * bit executables if the detached attribute is set.
          */
         if (apr_os_level >= APR_WIN_NT) {
+            apr_log("  setting DETACHED_PROCESS");
             /* 
              * XXX DETACHED_PROCESS won't on Win9x at all; on NT/W2K 
              * 16 bit executables fail (MS KB: Q150956)
@@ -540,6 +558,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
         // what point was CREATE_BREAKAWAY_FROM_JOB introduced?
         //if (apr_os_level >= APR_WIN_NT?)
         {
+            apr_log("  setting CREATE_BREAKAWAY_FROM_JOB");
             dwCreationFlags |= CREATE_BREAKAWAY_FROM_JOB;
         }
     }
@@ -705,6 +724,8 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
             }
         }
     }
+    apr_log("  progname: '%s'", apr_logstr(progname));
+    apr_log("  cmdline:  '%s'", apr_logstr(cmdline));
 
     if (!env || attr->cmdtype == APR_PROGRAM_ENV ||
         attr->cmdtype == APR_SHELLCMD_ENV) {
@@ -775,6 +796,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
         }
 #endif /* APR_HAS_ANSI_FS */
     } 
+    apr_log("  pEnvBlock is%s NULL", (pEnvBlock? " not" : ""));
 
     new->invoked = cmdline;
 
@@ -784,16 +806,13 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
         STARTUPINFOEXW si;
         HANDLE inherit[3];          /* stdin, stdout, stderr */
         DWORD inherit_cnt = 0;      /* slots used in 'inherit' */
-        BOOL  bInheritHandles = TRUE;
+        BOOL  bInheritHandles = FALSE;
         DWORD stdin_reset = 0;
         DWORD stdout_reset = 0;
         DWORD stderr_reset = 0;
         apr_wchar_t *wprg = NULL;
         apr_wchar_t *wcmd = NULL;
         apr_wchar_t *wcwd = NULL;
-
-        /* We're using STARTUPINFOEX, even if we don't set lpAttributeList */
-        dwCreationFlags |= EXTENDED_STARTUPINFO_PRESENT;
 
         if (progname) {
             apr_size_t nprg = strlen(progname) + 1;
@@ -844,13 +863,20 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
                 return rv;
             }
         }
+        apr_log("  wprg: '%ws'", apr_logwstr(wprg));
+        apr_log("  wcmd: '%ws'", apr_logwstr(wcmd));
+        apr_log("  wcwd: '%ws'", apr_logwstr(wcwd));
 
+        /* clear ALL of STARTUPINFOEXW... */
         memset(&si, 0, sizeof(si));
-        si.StartupInfo.cb = sizeof(si);
+        /* but for the moment, only tell CreateProcessW() about its
+           STARTUPINFOW prefix */
+        si.StartupInfo.cb = sizeof(STARTUPINFOW);
 
         if (attr->detached) {
             si.StartupInfo.dwFlags |= STARTF_USESHOWWINDOW;
             si.StartupInfo.wShowWindow = SW_HIDE;
+            apr_log("  setting STARTF_USESHOWWINDOW, SW_HIDE");
         }
 
 #ifndef _WIN32_WCE
@@ -864,6 +890,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
             || (attr->child_err && attr->child_err->filehand))
         {
             si.StartupInfo.dwFlags |= STARTF_USESTDHANDLES;
+            apr_log("  setting STARTF_USESTDHANDLES");
 
             si.StartupInfo.hStdInput = GetStdHandle(STD_INPUT_HANDLE);
             if (attr->child_in && attr->child_in->filehand)
@@ -918,6 +945,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
                     inherit[inherit_cnt++] = si.StartupInfo.hStdError;
                 }
             }
+            apr_log("  inherit_cnt = %d", inherit_cnt);
         }
 
         /* Only mess with apr_set_handle_list() if caller used our
@@ -927,13 +955,23 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
             /* Caller wants us to strictly constrain handles passed to child */
             if (! inherit_cnt)
             {
-                /* If 'inherit' is empty, simply turn off bInheritHandles. */
-                bInheritHandles = FALSE;
+                apr_log("  attr->constrain but no handles");
             }
             else
             {
-                /* 'inherit' non-empty: set that as specific handle list */
+                apr_log("  attr->constrain with %d handles: "
+                        "bInheritHandles = TRUE, setting EXTENDED_STARTUPINFO_PRESENT",
+                        inherit_cnt);
+                /* 'inherit' non-empty: turn on bInheritHandles */
+                bInheritHandles = TRUE;
+                /* We need STARTUPINFOEXW::lpAttributeList. Confess to
+                   CreateProcessW() that it's really a STARTUPINFOEXW rather
+                   than a vanilla STARTUPINFOW. */
+                dwCreationFlags |= EXTENDED_STARTUPINFO_PRESENT;
+                si.StartupInfo.cb = sizeof(si);
+                /* set specific handle list */
                 rv = apr_set_handle_list(&si.lpAttributeList, inherit_cnt, inherit);
+                apr_log("  apr_set_handle_list(%d) returned %d", inherit_cnt, rv);
             }
         }
 
@@ -954,6 +992,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
                 }
                 else
                 {
+                    apr_log("  CreateProcessAsUserW()");
                     rv = CreateProcessAsUserW(attr->user_token,
                                               wprg, wcmd,
                                               attr->sa,
@@ -964,11 +1003,13 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
                                               wcwd,
                                               (LPSTARTUPINFOW)(&si),
                                               &pi);
+                    apr_log("  returned %d", rv);
 
                     RevertToSelf();
                 }
             }
             else {
+                apr_log("  CreateProcessW()");
                 rv = CreateProcessW(wprg, wcmd,        /* Executable & Command line */
                                     NULL, NULL,        /* Proc & thread security attributes */
                                     bInheritHandles,   /* Inherit handles */
@@ -977,6 +1018,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
                                     wcwd,              /* Current directory name */
                                     (LPSTARTUPINFOW)(&si),
                                     &pi);
+                apr_log("  returned %d", rv);
             }
         }
 
@@ -1002,6 +1044,7 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
         LeaveCriticalSection(&proc_lock);
 
 #else /* defined(_WIN32_WCE) */
+        apr_log("  _WIN32_WCE CreateProcessW()");
         rv = CreateProcessW(wprg, wcmd,        /* Executable & Command line */
                             NULL, NULL,        /* Proc & thread security attributes */
                             FALSE,             /* must be 0 */
@@ -1010,10 +1053,13 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
                             NULL,              /* Current directory name must be NULL*/
                             NULL,              /* STARTUPINFO not supported */
                             &pi);
+        apr_log("  returned %d", rv);
 #endif
 
         /* Clean up si.lpAttributeList if we set it */
+        apr_log("  apr_cleanup_handle_list()");
         apr_cleanup_handle_list(&si.lpAttributeList);
+        apr_log("  okay");
     }
 #endif /* APR_HAS_UNICODE_FS */
 #if APR_HAS_ANSI_FS
@@ -1022,16 +1068,17 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
         STARTUPINFOEXA si;
         HANDLE inherit[3];          /* stdin, stdout, stderr */
         DWORD inherit_cnt = 0;      /* slots used in 'inherit' */
-        BOOL  bInheritHandles = TRUE;
+        BOOL  bInheritHandles = FALSE;
+        /* clear ALL of STARTUPINFOEXA... */
         memset(&si, 0, sizeof(si));
-        si.StartupInfo.cb = sizeof(si);
-
-        /* We're using STARTUPINFOEX, even if we don't set lpAttributeList */
-        dwCreationFlags |= EXTENDED_STARTUPINFO_PRESENT;
+        /* but for the moment, only tell CreateProcessA() about its
+           STARTUPINFOA prefix */
+        si.StartupInfo.cb = sizeof(STARTUPINFOA);
 
         if (attr->detached) {
             si.StartupInfo.dwFlags |= STARTF_USESHOWWINDOW;
             si.StartupInfo.wShowWindow = SW_HIDE;
+            apr_log("  setting STARTF_USESHOWWINDOW, SW_HIDE");
         }
 
         if ((attr->child_in && attr->child_in->filehand)
@@ -1063,18 +1110,29 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
             /* Caller wants us to strictly constrain handles passed to child */
             if (! inherit_cnt)
             {
-                /* If 'inherit' is empty, simply turn off bInheritHandles. */
-                bInheritHandles = FALSE;
+                apr_log("  attr->constrain but no handles");
             }
             else
             {
-                /* 'inherit' non-empty: set that as specific handle list */
+                apr_log("  attr->constrain with %d handles: "
+                        "bInheritHandles = TRUE, setting EXTENDED_STARTUPINFO_PRESENT",
+                        inherit_cnt);
+                /* 'inherit' non-empty: turn on bInheritHandles */
+                bInheritHandles = TRUE;
+                /* We need STARTUPINFOEXA::lpAttributeList. Confess to
+                   CreateProcessA() that it's really a STARTUPINFOEXA rather
+                   than a vanilla STARTUPINFOA. */
+                dwCreationFlags |= EXTENDED_STARTUPINFO_PRESENT;
+                si.StartupInfo.cb = sizeof(si);
+                /* set specific handle list */
                 rv = apr_set_handle_list(&si.lpAttributeList, inherit_cnt, inherit);
+                apr_log("  apr_set_handle_list(%d) returned %d", inherit_cnt, rv);
             }
         }
 
         if (rv == APR_SUCCESS)
         {
+            apr_log("  CreateProcessA()");
             rv = CreateProcessA(progname, cmdline, /* Command line */
                                 NULL, NULL,        /* Proc & thread security attributes */
                                 bInheritHandles,   /* Inherit handles */
@@ -1083,10 +1141,13 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
                                 attr->currdir,     /* Current directory name */
                                 (LPSTARTUPINFOA)(&si),
                                 &pi);
+            apr_log("  returned %d", rv);
         }
 
         /* Clean up si.lpAttributeList if we set it */
+        apr_log("  apr_cleanup_handle_list()");
         apr_cleanup_handle_list(&si.lpAttributeList);
+        apr_log("  okay");
     }
 #endif /* APR_HAS_ANSI_FS */
 
@@ -1113,7 +1174,10 @@ APR_DECLARE(apr_status_t) apr_proc_create(apr_proc_t *new,
 
     if (attr->autokill)
     {
-        apr_status_t assigned = apr_assign_proc_to_jobobject(new->hproc);
+        apr_status_t assigned = APR_SUCCESS;
+        apr_log("  apr_assign_proc_to_jobobject()");
+        assigned = apr_assign_proc_to_jobobject(new->hproc);
+        apr_log("  returned %d", assigned);
         if (assigned != APR_SUCCESS)
             return assigned;
     }
@@ -1130,27 +1194,37 @@ static apr_status_t apr_assign_proc_to_jobobject(HANDLE proc)
     {
         JOBOBJECT_EXTENDED_LIMIT_INFORMATION jeli = { 0 };
 
+        apr_log("    CreateJobObject(NULL, NULL)");
         sJob = CreateJobObject(NULL, NULL);
+        apr_log("    returned %08X", sJob);
         if (! sJob)
             return apr_get_os_error();
 
         // Configure all child processes associated with this new job object
         // to terminate when the calling process (us!) terminates.
         jeli.BasicLimitInformation.LimitFlags = JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
+        apr_log("    SetInformationJobObject()");
         if (! SetInformationJobObject(sJob, JobObjectExtendedLimitInformation, &jeli, sizeof(jeli)))
         {
             apr_status_t failcode = apr_get_os_error();
+            apr_log("    failed: %d", failcode);
             // This Job Object is useless to us
             CloseHandle(sJob);
             sJob = 0;
             return failcode;
         }
+        apr_log("    okay");
     }
 
     // Here either sJob was already nonzero, or our calls to create it and set
     // its info were successful.
+    apr_log("    AssignProcessToJobObject()");
     if (! AssignProcessToJobObject(sJob, proc))
+    {
+        apr_log("    failed");
         return apr_get_os_error();
+    }
+    apr_log("    okay");
 
     return APR_SUCCESS;
 }
@@ -1173,6 +1247,7 @@ static apr_status_t apr_set_handle_list(LPPROC_THREAD_ATTRIBUTE_LIST* ppattrlist
 
     *ppattrlist = NULL;
 
+    apr_log("    cHandlesToInherit = %d", cHandlesToInherit);
     if (! cHandlesToInherit)
         return APR_SUCCESS;
 
@@ -1187,7 +1262,11 @@ static apr_status_t apr_set_handle_list(LPPROC_THREAD_ATTRIBUTE_LIST* ppattrlist
     if (! (APR_HAVE_LATE_DLL_FUNC(InitializeProcThreadAttributeList) &&
            APR_HAVE_LATE_DLL_FUNC(DeleteProcThreadAttributeList) &&
            APR_HAVE_LATE_DLL_FUNC(UpdateProcThreadAttribute)))
+    {
+        apr_log("    Can't load all of InitializeProcThreadAttributeList(), "
+                "DeleteProcThreadAttributeList(), UpdateProcThreadAttribute()");
         return APR_SUCCESS;
+    }
 
     if (cHandlesToInherit >= (0xFFFFFFFF / sizeof(HANDLE))) {
         SetLastError(ERROR_INVALID_PARAMETER);
@@ -1202,14 +1281,20 @@ static apr_status_t apr_set_handle_list(LPPROC_THREAD_ATTRIBUTE_LIST* ppattrlist
      * initialization."
      */
 
+    apr_log("    InitializeProcThreadAttributeList() size query");
     InitializeProcThreadAttributeList(NULL, 1, 0, &size);
     error = GetLastError();
     if (error != ERROR_INSUFFICIENT_BUFFER)
+    {
+        apr_log("    returned unexpected %d", error);
         return error;
+    }
 
+    apr_log("    HeapAlloc(%u)", size);
     lpAttributeList = (LPPROC_THREAD_ATTRIBUTE_LIST)(HeapAlloc(GetProcessHeap(), 0, size));
     if (! lpAttributeList)
     {
+        apr_log("    STATUS_NO_MEMORY");
         /* HeapAlloc() is documented to not set GetLastError() info on fail. */
         SetLastError(STATUS_NO_MEMORY);
         return STATUS_NO_MEMORY;
@@ -1220,9 +1305,11 @@ static apr_status_t apr_set_handle_list(LPPROC_THREAD_ATTRIBUTE_LIST* ppattrlist
      * initialized.
      */
 
+    apr_log("    InitializeProcThreadAttributeList() for real");
     if (! InitializeProcThreadAttributeList(lpAttributeList, 1, 0, &size))
     {
         error = GetLastError();
+        apr_log("    returned %d", error);
         /* clean up allocated but uninitialized memory */
         HeapFree(GetProcessHeap(), 0, lpAttributeList);
         return error;
@@ -1232,18 +1319,22 @@ static apr_status_t apr_set_handle_list(LPPROC_THREAD_ATTRIBUTE_LIST* ppattrlist
      * UpdateProcThreadAttributeList()."
      */
 
+    apr_log("    UpdateProcThreadAttribute(PROC_THREAD_ATTRIBUTE_HANDLE_LIST, %d)",
+            cHandlesToInherit * sizeof(HANDLE));
     if (! UpdateProcThreadAttribute(lpAttributeList,
                                     0, PROC_THREAD_ATTRIBUTE_HANDLE_LIST,
                                     rgHandlesToInherit,
                                     cHandlesToInherit * sizeof(HANDLE), NULL, NULL))
     {
         error = GetLastError();
+        apr_log("    returned %d", error);
         /* At this point, with lpAttributeList allocated and initialized, we
          * can use the real cleanup function.
          */
         apr_cleanup_handle_list(&lpAttributeList);
         return error;
     }
+    apr_log("    okay");
 
     /* All systems go! Set caller's pointer. */
     *ppattrlist = lpAttributeList;
@@ -1263,7 +1354,9 @@ static void apr_cleanup_handle_list(LPPROC_THREAD_ATTRIBUTE_LIST* ppattrlist)
 
     if (*ppattrlist)
     {
+        apr_log("    DeleteProcThreadAttributeList()");
         DeleteProcThreadAttributeList(*ppattrlist);
+        apr_log("    HeapFree()");
         HeapFree(GetProcessHeap(), 0, *ppattrlist);
         *ppattrlist = NULL;
     }
