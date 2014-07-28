@@ -79,17 +79,17 @@ case "$AUTOBUILD_PLATFORM" in
 'darwin')
     PREFIX="$STAGING_DIR"
 
-    opts='-arch i386 -iwithsysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.5'
+    opts='-arch i386 -iwithsysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.6'
 
     pushd "$TOP_DIR/apr"
-    CC="gcc-4.2" CFLAGS="$opts" CXXFLAGS="$opts" LDFLAGS="$opts" \
+    CC="gcc" CFLAGS="$opts" CXXFLAGS="$opts" LDFLAGS="$opts" \
         ./configure --prefix="$PREFIX"
     make
     make install
     popd
 
     pushd "$TOP_DIR/apr-util"
-    CC="gcc-4.2" CFLAGS="$opts" CXXFLAGS="$opts" LDFLAGS="$opts" \
+    CC="gcc" CFLAGS="$opts" CXXFLAGS="$opts" LDFLAGS="$opts" \
         ./configure --prefix="$PREFIX" --with-apr="$PREFIX" \
         --with-expat="$PREFIX"
     make
