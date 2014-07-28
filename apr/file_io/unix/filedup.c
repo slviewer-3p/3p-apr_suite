@@ -35,8 +35,10 @@ static apr_status_t file_dup(apr_file_t **new_file,
             return APR_EINVAL;
         }
 #ifdef HAVE_DUP3
+#  ifdef O_CLOEXEC
         if (!((*new_file)->flags & (APR_FOPEN_NOCLEANUP|APR_INHERIT)))
             flags |= O_CLOEXEC;
+#  endif
         rv = dup3(old_file->filedes, (*new_file)->filedes, flags);
 #else
         rv = dup2(old_file->filedes, (*new_file)->filedes);
