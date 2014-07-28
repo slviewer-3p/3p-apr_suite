@@ -5,6 +5,12 @@
     <map>
       <key>expat</key>
       <map>
+        <key>description</key>
+        <string>Expat is an XML parser library written in C</string>
+        <key>license</key>
+        <string>expat</string>
+        <key>license_file</key>
+        <string>LICENSES/expat.txt</string>
         <key>name</key>
         <string>expat</string>
         <key>platforms</key>
@@ -14,9 +20,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>552aa6f936a254e4ad03ee4f68e99cfd</string>
+              <string>855d0f0c141f781e32e2ff7b5414207a</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/3p-expat/rev/246510/arch/Darwin/installer/expat-2.0.1-darwin-20111209.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/oz-metadata_3p-expat/rev/291075/arch/Darwin/installer/expat-2.0.1-darwin-291075.tar.bz2</string>
             </map>
             <key>name</key>
             <string>darwin</string>
@@ -26,9 +32,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>f725a725a20514963e3aa35fd8c35481</string>
+              <string>6d491c044ea28394757b1fe006dffed9</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/3p-expat/rev/246510/arch/Linux/installer/expat-2.0.1-linux-20111209.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/oz-metadata_3p-expat/rev/291075/arch/Linux/installer/expat-2.0.1-linux-291075.tar.bz2</string>
             </map>
             <key>name</key>
             <string>linux</string>
@@ -38,14 +44,16 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>d95c1e91df370e2389fd8a6eec97e4a8</string>
+              <string>02e7f83995084b5f2f08a49ee184c459</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/3p-expat/rev/246510/arch/CYGWIN/installer/expat-2.0.1-windows-20111209.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/oz-metadata_3p-expat/rev/291075/arch/CYGWIN/installer/expat-2.0.1-windows-291075.tar.bz2</string>
             </map>
             <key>name</key>
             <string>windows</string>
           </map>
         </map>
+        <key>version</key>
+        <string>2.0.1</string>
       </map>
     </map>
     <key>package_description</key>
