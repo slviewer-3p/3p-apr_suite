@@ -5,6 +5,8 @@ set -x
 # make errors fatal
 set -e
 
+APR_INCLUDE_DIR="apr/include"
+
 if [ -z "$AUTOBUILD" ] ; then 
     fail
 fi
@@ -20,6 +22,16 @@ set -x
 
 STAGING_DIR="$(pwd)"
 TOP_DIR="$(dirname "$0")"
+
+# extract APR version into VERSION.txt
+APR_INCLUDE_DIR="../apr/include"
+# will match -- #<whitespace>define<whitespace>APR_MAJOR_VERSION<whitespace>number  future proofed :)
+major_version=$(perl -ne 's/#\s*define\s+APR_MAJOR_VERSION\s+([\d]+)/$1/ && print' "${APR_INCLUDE_DIR}/apr_version.h")
+minor_version=$(perl -ne 's/#\s*define\s+APR_MINOR_VERSION\s+([\d]+)/$1/ && print' "${APR_INCLUDE_DIR}/apr_version.h")
+patch_version=$(perl -ne 's/#\s*define\s+APR_PATCH_VERSION\s+([\d]+)/$1/ && print' "${APR_INCLUDE_DIR}/apr_version.h")
+version="${major_version}.${minor_version}.${patch_version}"
+build=${AUTOBUILD_BUILD_ID:=0}
+echo "${version}.${build}" > "${STAGING_DIR}/VERSION.txt"
 
 case "$AUTOBUILD_PLATFORM" in
 "windows")
@@ -79,17 +91,17 @@ case "$AUTOBUILD_PLATFORM" in
 'darwin')
     PREFIX="$STAGING_DIR"
 
-    opts='-arch i386 -iwithsysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.6'
+    opts='-arch i386 -iwithsysroot /Developer/SDKs/MacOSX10.8.sdk -mmacosx-version-min=10.7'
 
     pushd "$TOP_DIR/apr"
-    CC="gcc" CFLAGS="$opts" CXXFLAGS="$opts" LDFLAGS="$opts" \
+    CC="clang" CFLAGS="$opts" CXXFLAGS="$opts" LDFLAGS="$opts" \
         ./configure --prefix="$PREFIX"
     make
     make install
     popd
 
     pushd "$TOP_DIR/apr-util"
-    CC="gcc" CFLAGS="$opts" CXXFLAGS="$opts" LDFLAGS="$opts" \
+    CC="clang" CFLAGS="$opts" CXXFLAGS="$opts" LDFLAGS="$opts" \
         ./configure --prefix="$PREFIX" --with-apr="$PREFIX" \
         --with-expat="$PREFIX"
     make
