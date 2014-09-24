@@ -20,9 +20,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>855d0f0c141f781e32e2ff7b5414207a</string>
+              <string>49213f2ad68509fd63702fd13b70999d</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/oz-metadata_3p-expat/rev/291075/arch/Darwin/installer/expat-2.0.1-darwin-291075.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat_3p-update-expat/rev/294649/arch/Darwin/installer/expat-2.0.1.294649-darwin-294649.tar.bz2</string>
             </map>
             <key>name</key>
             <string>darwin</string>
