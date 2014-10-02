@@ -5,6 +5,8 @@
     <map>
       <key>expat</key>
       <map>
+        <key>copyright</key>
+        <string>Copyright (c) 1998, 1999, 2000 Thai Open Source Software Center Ltd and Clark Cooper - Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006 Expat maintainers.</string>
         <key>description</key>
         <string>Expat is an XML parser library written in C</string>
         <key>license</key>
@@ -20,9 +22,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>c9b0fbae2ccd33580bcf0a9969b77f3f</string>
+              <string>fb099b6a4274b5c9aba33be0dc23f7e3</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/294852/arch/Darwin/installer/expat-2.0.1.294852-darwin-294852.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/295018/arch/Darwin/installer/expat-2.0.1.295018-darwin-295018.tar.bz2</string>
             </map>
             <key>name</key>
             <string>darwin</string>
@@ -53,7 +55,7 @@
           </map>
         </map>
         <key>version</key>
-        <string>2.0.1</string>
+        <string>2.0.1.295018</string>
       </map>
     </map>
     <key>package_description</key>
