@@ -22,7 +22,7 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>fb099b6a4274b5c9aba33be0dc23f7e3</string>
+              <string>96ab90f72ba55842e7a19bd2573e875d</string>
               <key>url</key>
               <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/295018/arch/Darwin/installer/expat-2.0.1.295018-darwin-295018.tar.bz2</string>
             </map>
