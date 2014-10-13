@@ -7,7 +7,7 @@ set -e
 
 APR_INCLUDE_DIR="apr/include"
 
-if [ -z "$AUTOBUILD" ] ; then 
+if [ -z "$AUTOBUILD" ] ; then
     fail
 fi
 
@@ -40,7 +40,7 @@ case "$AUTOBUILD_PLATFORM" in
     RELEASE_OUT_DIR="$STAGING_DIR/lib/release"
 
     load_vsvars
- 
+
     build_sln "apr-util/aprutil.sln" "Debug|Win32"   "apr"  || exit 1
     build_sln "apr-util/aprutil.sln" "Release|Win32" "apr"  || exit 1
     build_sln "apr-util/aprutil.sln" "Debug|Win32"   "aprutil"  || exit 1
@@ -55,7 +55,7 @@ case "$AUTOBUILD_PLATFORM" in
     build_sln "apr-util/aprutil.sln" "Release|Win32"  "libapriconv" || exit 1
     build_sln "apr-util/aprutil.sln" "Debug|Win32"    "libaprutil" || exit 1
     build_sln "apr-util/aprutil.sln" "Release|Win32"  "libaprutil" || exit 1
-    
+
     mkdir -p "$DEBUG_OUT_DIR"   || echo "$DEBUG_OUT_DIR exists"
     mkdir -p "$RELEASE_OUT_DIR" || echo "$RELEASE_OUT_DIR exists"
     cp "apr/LibD/apr-1.lib" "$DEBUG_OUT_DIR" || exit 1
@@ -91,7 +91,7 @@ case "$AUTOBUILD_PLATFORM" in
 'darwin')
     PREFIX="$STAGING_DIR"
 
-    opts='-arch i386 -iwithsysroot /Developer/SDKs/MacOSX10.8.sdk -mmacosx-version-min=10.7'
+    opts='-arch i386 -iwithsysroot /Developer/SDKs/MacOSX10.9.sdk -mmacosx-version-min=10.7'
 
     pushd "$TOP_DIR/apr"
     CC="clang" CFLAGS="$opts" CXXFLAGS="$opts" LDFLAGS="$opts" \
@@ -285,7 +285,7 @@ case "$AUTOBUILD_PLATFORM" in
 	cp "$PREFIX/packages/include/expat/expat_external.h" "$PREFIX/include/apr-1/"
 	cp "$PREFIX/packages/include/expat/expat.h" "$PREFIX/include/apr-1/"
 
-	# clean 
+	# clean
     pushd "$TOP_DIR/apr"
 		make distclean
     popd
