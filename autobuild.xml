@@ -22,9 +22,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>96ab90f72ba55842e7a19bd2573e875d</string>
+              <string>11c807cb900e1feea2b9460bd13c97d8</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/295018/arch/Darwin/installer/expat-2.0.1.295018-darwin-295018.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/295509/arch/Darwin/installer/expat-2.0.1.295509-darwin-295509.tar.bz2</string>
             </map>
             <key>name</key>
             <string>darwin</string>
@@ -34,9 +34,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>6d491c044ea28394757b1fe006dffed9</string>
+              <string>d41e95a30c4156c08d7a84a227cac155</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/oz-metadata_3p-expat/rev/291075/arch/Linux/installer/expat-2.0.1-linux-291075.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/295509/arch/Linux/installer/expat-2.0.1.295509-linux-295509.tar.bz2</string>
             </map>
             <key>name</key>
             <string>linux</string>
@@ -46,16 +46,16 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>02e7f83995084b5f2f08a49ee184c459</string>
+              <string>05f20b4d348944cdedaa4826d6e99098</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/oz-metadata_3p-expat/rev/291075/arch/CYGWIN/installer/expat-2.0.1-windows-291075.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/295509/arch/CYGWIN/installer/expat-2.0.1.295509-windows-295509.tar.bz2</string>
             </map>
             <key>name</key>
             <string>windows</string>
           </map>
         </map>
         <key>version</key>
-        <string>2.0.1.295018</string>
+        <string>2.0.1.295509</string>
       </map>
     </map>
     <key>package_description</key>
