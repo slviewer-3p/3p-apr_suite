@@ -41,39 +41,30 @@ case "$AUTOBUILD_PLATFORM" in
 
     load_vsvars
 
-    build_sln "apr-util/aprutil.sln" "Debug|Win32"   "apr"  || exit 1
-    build_sln "apr-util/aprutil.sln" "Release|Win32" "apr"  || exit 1
-    build_sln "apr-util/aprutil.sln" "Debug|Win32"   "aprutil"  || exit 1
-    build_sln "apr-util/aprutil.sln" "Release|Win32" "aprutil"  || exit 1
-    build_sln "apr-util/aprutil.sln" "Debug|Win32"   "apriconv"  || exit 1
-    build_sln "apr-util/aprutil.sln" "Release|Win32" "apriconv"  || exit 1
-    build_sln "apr-util/aprutil.sln" "Debug|Win32"   "xml"  || exit 1
-    build_sln "apr-util/aprutil.sln" "Release|Win32" "xml"  || exit 1
-    build_sln "apr-util/aprutil.sln" "Debug|Win32"    "libapr" || exit 1
-    build_sln "apr-util/aprutil.sln" "Release|Win32"  "libapr" || exit 1
-    build_sln "apr-util/aprutil.sln" "Debug|Win32"    "libapriconv" || exit 1
-    build_sln "apr-util/aprutil.sln" "Release|Win32"  "libapriconv" || exit 1
-    build_sln "apr-util/aprutil.sln" "Debug|Win32"    "libaprutil" || exit 1
-    build_sln "apr-util/aprutil.sln" "Release|Win32"  "libaprutil" || exit 1
+    for proj in apr aprutil apriconv xml libapr libapriconv libaprutil
+    do for conf in Debug Release
+       do build_sln "apr-util/aprutil.sln" "$conf|Win32" "$proj"
+       done
+    done
 
     mkdir -p "$DEBUG_OUT_DIR"   || echo "$DEBUG_OUT_DIR exists"
     mkdir -p "$RELEASE_OUT_DIR" || echo "$RELEASE_OUT_DIR exists"
-    cp "apr/LibD/apr-1.lib" "$DEBUG_OUT_DIR" || exit 1
-    cp "apr/LibR/apr-1.lib" "$RELEASE_OUT_DIR" || exit 1
-    cp "apr-util/LibD/aprutil-1.lib" "$DEBUG_OUT_DIR" || exit 1
-    cp "apr-util/LibR/aprutil-1.lib" "$RELEASE_OUT_DIR" || exit 1
-    cp "apr-iconv/LibD/apriconv-1.lib" "$DEBUG_OUT_DIR" || exit 1
-    cp "apr-iconv/LibR/apriconv-1.lib" "$RELEASE_OUT_DIR" || exit 1
-    cp "apr/Debug/libapr-1."{lib,dll} "$DEBUG_OUT_DIR" || exit 1
-    cp "apr/Release/libapr-1."{lib,dll} "$RELEASE_OUT_DIR" || exit 1
-    cp "apr/Debug/libapr_src.pdb" "$DEBUG_OUT_DIR" || exit 1
-    cp "apr/Release/libapr_src.pdb" "$RELEASE_OUT_DIR" || exit 1
-    cp "apr-iconv/Debug/libapriconv-1."{lib,dll} "$DEBUG_OUT_DIR" || exit 1
-    cp "apr-iconv/Release/libapriconv-1."{lib,dll} "$RELEASE_OUT_DIR" || exit 1
-    cp "apr-util/Debug/libaprutil-1."{lib,dll} "$DEBUG_OUT_DIR" || exit 1
-    cp "apr-util/Release/libaprutil-1."{lib,dll} "$RELEASE_OUT_DIR" || exit 1
-    cp "apr-util/Debug/libaprutil_src.pdb" "$DEBUG_OUT_DIR" || exit 1
-    cp "apr-util/Release/libaprutil_src.pdb" "$RELEASE_OUT_DIR" || exit 1
+    cp "apr/LibD/apr-1.lib" "$DEBUG_OUT_DIR"
+    cp "apr/LibR/apr-1.lib" "$RELEASE_OUT_DIR"
+    cp "apr-util/LibD/aprutil-1.lib" "$DEBUG_OUT_DIR"
+    cp "apr-util/LibR/aprutil-1.lib" "$RELEASE_OUT_DIR"
+    cp "apr-iconv/LibD/apriconv-1.lib" "$DEBUG_OUT_DIR"
+    cp "apr-iconv/LibR/apriconv-1.lib" "$RELEASE_OUT_DIR"
+    cp "apr/Debug/libapr-1."{lib,dll} "$DEBUG_OUT_DIR"
+    cp "apr/Release/libapr-1."{lib,dll} "$RELEASE_OUT_DIR"
+    cp "apr/Debug/libapr_src.pdb" "$DEBUG_OUT_DIR"
+    cp "apr/Release/libapr_src.pdb" "$RELEASE_OUT_DIR"
+    cp "apr-iconv/Debug/libapriconv-1."{lib,dll} "$DEBUG_OUT_DIR"
+    cp "apr-iconv/Release/libapriconv-1."{lib,dll} "$RELEASE_OUT_DIR"
+    cp "apr-util/Debug/libaprutil-1."{lib,dll} "$DEBUG_OUT_DIR"
+    cp "apr-util/Release/libaprutil-1."{lib,dll} "$RELEASE_OUT_DIR"
+    cp "apr-util/Debug/libaprutil_src.pdb" "$DEBUG_OUT_DIR"
+    cp "apr-util/Release/libaprutil_src.pdb" "$RELEASE_OUT_DIR"
 
     INCLUDE_DIR="$STAGING_DIR/include/apr-1"
     mkdir -p "$INCLUDE_DIR"      || echo "$INCLUDE_DIR exists"
