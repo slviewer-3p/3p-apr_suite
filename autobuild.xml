@@ -22,9 +22,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>11c807cb900e1feea2b9460bd13c97d8</string>
+              <string>452d1910ef853329cd59858e6c5b2c48</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/295509/arch/Darwin/installer/expat-2.0.1.295509-darwin-295509.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/297014/arch/Darwin/installer/expat-2.0.1.297014-darwin-297014.tar.bz2</string>
             </map>
             <key>name</key>
             <string>darwin</string>
@@ -34,9 +34,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>d41e95a30c4156c08d7a84a227cac155</string>
+              <string>f546615d76bc0f9e8bc2b9ef89f0ca86</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/295509/arch/Linux/installer/expat-2.0.1.295509-linux-295509.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/297014/arch/Linux/installer/expat-2.0.1.297014-linux-297014.tar.bz2</string>
             </map>
             <key>name</key>
             <string>linux</string>
@@ -46,16 +46,16 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>05f20b4d348944cdedaa4826d6e99098</string>
+              <string>c70c72a8a0a1e508691a9b35739b373f</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/295509/arch/CYGWIN/installer/expat-2.0.1.295509-windows-295509.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/297014/arch/CYGWIN/installer/expat-2.0.1.297014-windows-297014.tar.bz2</string>
             </map>
             <key>name</key>
             <string>windows</string>
           </map>
         </map>
         <key>version</key>
-        <string>2.0.1.295509</string>
+        <string>2.0.1.297014</string>
       </map>
     </map>
     <key>package_description</key>
