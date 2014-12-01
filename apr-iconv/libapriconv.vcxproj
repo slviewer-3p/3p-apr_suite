@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -160,7 +160,7 @@
       <OutputFile>Release\libapriconv-1.dll</OutputFile>
       <ImportLibrary>Release\libapriconv-1.lib</ImportLibrary>
       <BaseAddress>0x6EE50000</BaseAddress>
-      <AdditionalDependencies>libapr-1.lib;kernel32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libapr-1.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /MACHINE:X86</AdditionalOptions>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
@@ -211,7 +211,7 @@
       <OutputFile>x64\Debug\libapriconv-1.dll</OutputFile>
       <ImportLibrary>x64\Debug\libapriconv-1.lib</ImportLibrary>
       <BaseAddress>0x6EE50000</BaseAddress>
-      <AdditionalDependencies>kernel32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /MACHINE:X64</AdditionalOptions>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -261,7 +261,7 @@
       <OutputFile>.\Debug\libapriconv-1.dll</OutputFile>
       <ImportLibrary>Debug\libapriconv-1.lib</ImportLibrary>
       <BaseAddress>0x6EE50000</BaseAddress>
-      <AdditionalDependencies>libapr-1.lib;kernel32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libapr-1.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /MACHINE:X86</AdditionalOptions>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -312,7 +312,7 @@
       <OutputFile>x64\Release\libapriconv-1.dll</OutputFile>
       <ImportLibrary>x64\Release\libapriconv-1.lib</ImportLibrary>
       <BaseAddress>0x6EE50000</BaseAddress>
-      <AdditionalDependencies>kernel32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /MACHINE:X64</AdditionalOptions>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
