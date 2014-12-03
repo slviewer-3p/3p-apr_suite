@@ -101,7 +101,7 @@
     <OutDir>.\Release\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;../apr/Release;../apr-iconv/Release;../stage/packages/lib/release/</LibraryPath>
+    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib\winv6.3\um\x86;$(FrameworkSDKDir)\lib;../apr/Release;../apr-iconv/Release;../stage/packages/lib/release/</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>.\x64\Release\</OutDir>
@@ -112,7 +112,7 @@
     <OutDir>.\Debug\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;../apr/Debug;../apr-iconv/Debug;../stage/packages/lib/debug</LibraryPath>
+    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib\winv6.3\um\x86;$(FrameworkSDKDir)\lib;../apr/Debug;../apr-iconv/Debug;../stage/packages/lib/debug</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -157,7 +157,7 @@
       <OutputFile>x64\Debug\libaprutil-1.dll</OutputFile>
       <ImportLibrary>x64\Debug\libaprutil-1.lib</ImportLibrary>
       <BaseAddress>0x6EE60000</BaseAddress>
-      <AdditionalDependencies>ws2_32.lib;mswsock.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /MACHINE:X64</AdditionalOptions>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -206,10 +206,11 @@
       <OutputFile>Release\libaprutil-1.dll</OutputFile>
       <ImportLibrary>Release\libaprutil-1.lib</ImportLibrary>
       <BaseAddress>0x6EE60000</BaseAddress>
-      <AdditionalDependencies>libapr-1.lib;libapriconv-1.lib;libexpatMT.lib;ws2_32.lib;mswsock.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libapr-1.lib;libapriconv-1.lib;libexpatMT.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /MACHINE:X86</AdditionalOptions>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
+      <IgnoreSpecificDefaultLibraries>libcmt</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -256,7 +257,7 @@
       <OutputFile>x64\Release\libaprutil-1.dll</OutputFile>
       <ImportLibrary>x64\Release\libaprutil-1.lib</ImportLibrary>
       <BaseAddress>0x6EE60000</BaseAddress>
-      <AdditionalDependencies>ws2_32.lib;mswsock.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /MACHINE:X64</AdditionalOptions>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
@@ -305,7 +306,7 @@
       <OutputFile>Debug\libaprutil-1.dll</OutputFile>
       <ImportLibrary>Debug\libaprutil-1.lib</ImportLibrary>
       <BaseAddress>0x6EE60000</BaseAddress>
-      <AdditionalDependencies>libapr-1.lib;libapriconv-1.lib;libexpatMT.lib;ws2_32.lib;mswsock.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libapr-1.lib;libapriconv-1.lib;libexpatMT.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /MACHINE:X86</AdditionalOptions>
       <SubSystem>Windows</SubSystem>
     </Link>
