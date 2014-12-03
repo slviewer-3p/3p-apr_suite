@@ -92,7 +92,13 @@ static apr_status_t impl_pollset_create(apr_pollset_t *pollset,
     apr_status_t rv;
     int fd;
 
-#ifdef HAVE_EPOLL_CREATE1
+    /* Not every system that has epoll_create1() also has EPOLL_CLOEXEC
+     * defined. This conditional depends on systems with EPOLL_CLOEXEC defining
+     * it as a macro. We observe that at least one Linux system which defines
+     * EPOLL_CLOEXEC as an enum value also defines it as a macro -- presumably
+     * for exactly this kind of test.
+     */
+#if defined(HAVE_EPOLL_CREATE1) && defined(EPOLL_CLOEXEC)
     fd = epoll_create1(EPOLL_CLOEXEC);
 #else
     fd = epoll_create(size);
