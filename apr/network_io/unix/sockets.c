@@ -206,7 +206,7 @@ apr_status_t apr_socket_accept(apr_socket_t **new, apr_socket_t *sock,
 
     sa.salen = sizeof(sa.sa);
 
-#ifdef HAVE_ACCEPT4
+#if defined(HAVE_ACCEPT4) && defined(HAVE_SOCK_CLOEXEC)
     s = accept4(sock->socketdes, (struct sockaddr *)&sa.sa, &sa.salen, SOCK_CLOEXEC);
 #else
     s = accept(sock->socketdes, (struct sockaddr *)&sa.sa, &sa.salen);
