@@ -1,12 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "apr", "..\apr\apr.vcxproj", "{46CC7E67-EADF-698E-33E4-6B43394D45AA}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aprapp", "..\apr\build\aprapp.vcxproj", "{AD318440-A041-C4AB-FE77-601F9D54B484}"
-	ProjectSection(ProjectDependencies) = postProject
-		{F2F85690-ED4B-A832-0D15-208E032023B6} = {F2F85690-ED4B-A832-0D15-208E032023B6}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "apr_dbd_freetds", "dbd\apr_dbd_freetds.vcxproj", "{8AC1BF56-DAEE-23F7-37FD-4C5E4620A2DD}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -82,9 +81,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libapr", "..\apr\libapr.vcxproj", "{0B76F2AE-FB7A-2628-A42E-8F9A84B07949}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libaprapp", "..\apr\build\libaprapp.vcxproj", "{A87D2A96-F05E-4A69-F97B-124F4699C8B0}"
-	ProjectSection(ProjectDependencies) = postProject
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E} = {9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libapriconv", "..\apr-iconv\libapriconv.vcxproj", "{843C365F-37B6-188F-99D7-39B12B87466F}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -110,16 +106,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libaprutil", "libaprutil.vc
 		{759236FD-82B9-D7BD-032E-B78D2645CE1B} = {759236FD-82B9-D7BD-032E-B78D2645CE1B}
 		{0D191873-9880-2B17-A9AD-7B0F741303F7} = {0D191873-9880-2B17-A9AD-7B0F741303F7}
 		{358FF508-6676-C17B-4F1A-78BF30345B90} = {358FF508-6676-C17B-4F1A-78BF30345B90}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "preaprapp", "..\apr\build\preaprapp.vcxproj", "{F2F85690-ED4B-A832-0D15-208E032023B6}"
-	ProjectSection(ProjectDependencies) = postProject
-		{46CC7E67-EADF-698E-33E4-6B43394D45AA} = {46CC7E67-EADF-698E-33E4-6B43394D45AA}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "prelibaprapp", "..\apr\build\prelibaprapp.vcxproj", "{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{0B76F2AE-FB7A-2628-A42E-8F9A84B07949} = {0B76F2AE-FB7A-2628-A42E-8F9A84B07949}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xml", "xml\expat\lib\xml.vcxproj", "{358FF508-6676-C17B-4F1A-78BF30345B90}"
@@ -638,34 +624,6 @@ Global
 		{D4A966E1-0709-CC62-E24F-5C020BC0B41D}.Template|Win32.Build.0 = Template|Win32
 		{D4A966E1-0709-CC62-E24F-5C020BC0B41D}.Template|x64.ActiveCfg = Template|x64
 		{D4A966E1-0709-CC62-E24F-5C020BC0B41D}.Template|x64.Build.0 = Template|x64
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.Debug|Win32.ActiveCfg = Debug|Win32
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.Debug|x64.ActiveCfg = Debug|x64
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.Debug9x|Win32.ActiveCfg = Debug9x|Win32
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.Debug9x|x64.ActiveCfg = Debug9x|x64
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.DebugNT|Win32.ActiveCfg = Debug|x64
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.DebugNT|x64.ActiveCfg = Debug|x64
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.Release|Win32.ActiveCfg = Release|Win32
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.Release|x64.ActiveCfg = Release|x64
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.Release9x|Win32.ActiveCfg = Release9x|Win32
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.Release9x|x64.ActiveCfg = Release9x|x64
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.ReleaseNT|Win32.ActiveCfg = Release|x64
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.ReleaseNT|x64.ActiveCfg = Release|x64
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.Template|Win32.ActiveCfg = Template|Win32
-		{F2F85690-ED4B-A832-0D15-208E032023B6}.Template|x64.ActiveCfg = Template|x64
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.Debug|Win32.ActiveCfg = Debug|Win32
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.Debug|x64.ActiveCfg = Debug|x64
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.Debug9x|Win32.ActiveCfg = Debug9x|Win32
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.Debug9x|x64.ActiveCfg = Debug9x|x64
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.DebugNT|Win32.ActiveCfg = Debug|x64
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.DebugNT|x64.ActiveCfg = Debug|x64
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.Release|Win32.ActiveCfg = Release|Win32
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.Release|x64.ActiveCfg = Release|x64
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.Release9x|Win32.ActiveCfg = Release9x|Win32
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.Release9x|x64.ActiveCfg = Release9x|x64
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.ReleaseNT|Win32.ActiveCfg = Release|x64
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.ReleaseNT|x64.ActiveCfg = Release|x64
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.Template|Win32.ActiveCfg = Template|Win32
-		{9B16F536-CFB1-B3B5-12EF-1BEC495F4E2E}.Template|x64.ActiveCfg = Template|x64
 		{358FF508-6676-C17B-4F1A-78BF30345B90}.Debug|Win32.ActiveCfg = Debug|Win32
 		{358FF508-6676-C17B-4F1A-78BF30345B90}.Debug|Win32.Build.0 = Debug|Win32
 		{358FF508-6676-C17B-4F1A-78BF30345B90}.Debug|x64.ActiveCfg = Debug|x64
