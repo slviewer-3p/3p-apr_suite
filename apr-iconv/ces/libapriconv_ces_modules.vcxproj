@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug9x|Win32">
@@ -152,57 +152,57 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>.\</OutDir>
     <IntDir>.\</IntDir>
-    <NMakeBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="x64 Debug" BIND_MODE=shared</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="x64 Debug" BIND_MODE=shared /a</NMakeReBuildCommandLine>
+    <NMakeBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="x64 Debug" BIND_MODE=shared</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="x64 Debug" BIND_MODE=shared /a</NMakeReBuildCommandLine>
     <NMakeOutput>Debug</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNT|Win32'">
     <OutDir>.\</OutDir>
     <IntDir>.\</IntDir>
-    <NMakeBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="Win32 ReleaseNT" BIND_MODE=shared</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="Win32 ReleaseNT" BIND_MODE=shared /a</NMakeReBuildCommandLine>
+    <NMakeBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="Win32 ReleaseNT" BIND_MODE=shared</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="Win32 ReleaseNT" BIND_MODE=shared /a</NMakeReBuildCommandLine>
     <NMakeOutput>Release</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\</OutDir>
     <IntDir>.\</IntDir>
-    <NMakeBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="Win32 Release" BIND_MODE=shared</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="Win32 Release" BIND_MODE=shared /a</NMakeReBuildCommandLine>
+    <NMakeBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="Win32 Release" BIND_MODE=shared</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="Win32 Release" BIND_MODE=shared /a</NMakeReBuildCommandLine>
     <NMakeOutput>Release</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>.\</OutDir>
     <IntDir>.\</IntDir>
-    <NMakeBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="x64 Release" BIND_MODE=shared</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="x64 Release" BIND_MODE=shared /a</NMakeReBuildCommandLine>
+    <NMakeBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="x64 Release" BIND_MODE=shared</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="x64 Release" BIND_MODE=shared /a</NMakeReBuildCommandLine>
     <NMakeOutput>Release</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release9x|Win32'">
     <OutDir>.\</OutDir>
     <IntDir>.\</IntDir>
-    <NMakeBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="Win32 Release9x" BIND_MODE=shared</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="Win32 Release9x" BIND_MODE=shared /a</NMakeReBuildCommandLine>
+    <NMakeBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="Win32 Release9x" BIND_MODE=shared</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="Win32 Release9x" BIND_MODE=shared /a</NMakeReBuildCommandLine>
     <NMakeOutput>Release</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNT|Win32'">
     <OutDir>.\</OutDir>
     <IntDir>.\</IntDir>
-    <NMakeBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="Win32 DebugNT" BIND_MODE=shared</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="Win32 DebugNT" BIND_MODE=shared /a</NMakeReBuildCommandLine>
+    <NMakeBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="Win32 DebugNT" BIND_MODE=shared</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="Win32 DebugNT" BIND_MODE=shared /a</NMakeReBuildCommandLine>
     <NMakeOutput>Debug</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug9x|Win32'">
     <OutDir>.\</OutDir>
     <IntDir>.\</IntDir>
-    <NMakeBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="Win32 Debug9x" BIND_MODE=shared</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="Win32 Debug9x" BIND_MODE=shared /a</NMakeReBuildCommandLine>
+    <NMakeBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="Win32 Debug9x" BIND_MODE=shared</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="Win32 Debug9x" BIND_MODE=shared /a</NMakeReBuildCommandLine>
     <NMakeOutput>Debug</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>.\</OutDir>
     <IntDir>.\</IntDir>
-    <NMakeBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="Win32 Debug" BIND_MODE=shared</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>NMAKE /nologo /f Makefile.win BUILD_MODE="Win32 Debug" BIND_MODE=shared /a</NMakeReBuildCommandLine>
+    <NMakeBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="Win32 Debug" BIND_MODE=shared</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>"$(VCINSTALLDIR)\BIN\NMAKE" /nologo /f Makefile.win BUILD_MODE="Win32 Debug" BIND_MODE=shared /a</NMakeReBuildCommandLine>
     <NMakeOutput>Debug</NMakeOutput>
   </PropertyGroup>
   <ItemDefinitionGroup>
