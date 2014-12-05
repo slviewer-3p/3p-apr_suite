@@ -218,8 +218,8 @@ $(MODRES).pch:
 
 # added $(MODRES).obj per http://www.apachelounge.com/viewtopic.php?t=4393
 .c{$(OUTPUT_DIR)}.so:
-	$(SILENT)cl $(ALL_CFLAGS) /Fo$*.obj $(MODRES).obj /Yuiconv.h /c $<
-	$(SILENT)link $(ALL_LDFLAGS) $*.obj $(API_LIBS) /out:$@ \
+	$(SILENT)cl $(ALL_CFLAGS) /Fo$*.obj /Yuiconv.h /c $<
+	$(SILENT)link $(ALL_LDFLAGS) $*.obj $(MODRES).obj $(API_LIBS) /out:$@ \
 		/base:@"..\build\BaseAddr.ref",$(@F)
 	$(SILENT)if exist $@.manifest \
 		$(SILENT)mt -nologo -manifest $@.manifest -outputresource:$@;2 \
