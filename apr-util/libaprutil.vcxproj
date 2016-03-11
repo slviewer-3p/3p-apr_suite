@@ -257,10 +257,11 @@
       <OutputFile>x64\Release\libaprutil-1.dll</OutputFile>
       <ImportLibrary>x64\Release\libaprutil-1.lib</ImportLibrary>
       <BaseAddress>0x6EE60000</BaseAddress>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libapr-1.lib;libapriconv-1.lib;libexpatMT.lib;xml.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /MACHINE:X64</AdditionalOptions>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>..\apr\x64\Release;..\apr-iconv\x64\Release;..\stage\packages\lib\release;..\apr-util\xml\expat\lib\x64\LibR</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

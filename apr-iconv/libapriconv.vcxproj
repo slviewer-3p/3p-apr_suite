@@ -312,10 +312,11 @@
       <OutputFile>x64\Release\libapriconv-1.dll</OutputFile>
       <ImportLibrary>x64\Release\libapriconv-1.lib</ImportLibrary>
       <BaseAddress>0x6EE50000</BaseAddress>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libapr-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions> /MACHINE:X64</AdditionalOptions>
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>..\apr\x64\Release</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -34,37 +34,34 @@ build=${AUTOBUILD_BUILD_ID:=0}
 echo "${version}.${build}" > "${STAGING_DIR}/VERSION.txt"
 
 case "$AUTOBUILD_PLATFORM" in
-"windows")
+  windows*)
     pushd "$TOP_DIR"
-    DEBUG_OUT_DIR="$STAGING_DIR/lib/debug"
     RELEASE_OUT_DIR="$STAGING_DIR/lib/release"
 
     load_vsvars
 
-    for proj in apr aprutil apriconv xml libapr libapriconv libaprutil
-    do for conf in Debug Release
-       do build_sln "apr-util/aprutil.sln" "$conf|Win32" "$proj"
-       done
+    for proj in apr aprutil apriconv xml libapr  libaprutil libapriconv
+      do build_sln "apr-util/aprutil.sln" "Release|$AUTOBUILD_WIN_VSPLATFORM" "$proj"
     done
 
-    mkdir -p "$DEBUG_OUT_DIR"   || echo "$DEBUG_OUT_DIR exists"
     mkdir -p "$RELEASE_OUT_DIR" || echo "$RELEASE_OUT_DIR exists"
-    cp "apr/LibD/apr-1.lib" "$DEBUG_OUT_DIR"
-    cp "apr/LibR/apr-1.lib" "$RELEASE_OUT_DIR"
-    cp "apr-util/LibD/aprutil-1.lib" "$DEBUG_OUT_DIR"
-    cp "apr-util/LibR/aprutil-1.lib" "$RELEASE_OUT_DIR"
-    cp "apr-iconv/LibD/apriconv-1.lib" "$DEBUG_OUT_DIR"
-    cp "apr-iconv/LibR/apriconv-1.lib" "$RELEASE_OUT_DIR"
-    cp "apr/Debug/libapr-1."{lib,dll} "$DEBUG_OUT_DIR"
-    cp "apr/Release/libapr-1."{lib,dll} "$RELEASE_OUT_DIR"
-    cp "apr/Debug/libapr_src.pdb" "$DEBUG_OUT_DIR"
-    cp "apr/Release/libapr_src.pdb" "$RELEASE_OUT_DIR"
-    cp "apr-iconv/Debug/libapriconv-1."{lib,dll} "$DEBUG_OUT_DIR"
-    cp "apr-iconv/Release/libapriconv-1."{lib,dll} "$RELEASE_OUT_DIR"
-    cp "apr-util/Debug/libaprutil-1."{lib,dll} "$DEBUG_OUT_DIR"
-    cp "apr-util/Release/libaprutil-1."{lib,dll} "$RELEASE_OUT_DIR"
-    cp "apr-util/Debug/libaprutil_src.pdb" "$DEBUG_OUT_DIR"
-    cp "apr-util/Release/libaprutil_src.pdb" "$RELEASE_OUT_DIR"
+
+    if [ "$AUTOBUILD_ADDRSIZE" = 32 ]
+      then 
+        cp "apr/LibR/apr-1.lib" "$RELEASE_OUT_DIR"
+        cp "apr-util/LibR/aprutil-1.lib" "$RELEASE_OUT_DIR"
+        cp "apr-iconv/LibR/apriconv-1.lib" "$RELEASE_OUT_DIR"
+        cp "apr/Release/libapr-1."{lib,dll} "$RELEASE_OUT_DIR"
+        cp "apr-iconv/Release/libapriconv-1."{lib,dll} "$RELEASE_OUT_DIR"
+        cp "apr-util/Release/libaprutil-1."{lib,dll} "$RELEASE_OUT_DIR"
+      else
+        cp "apr/x64/LibR/apr-1.lib" "$RELEASE_OUT_DIR"
+        cp "apr-util/x64/LibR/aprutil-1.lib" "$RELEASE_OUT_DIR"
+        cp "apr-iconv/x64/LibR/apriconv-1.lib" "$RELEASE_OUT_DIR"
+        cp "apr/x64/Release/libapr-1."{lib,dll} "$RELEASE_OUT_DIR"
+        cp "apr-iconv/x64/Release/libapriconv-1."{lib,dll} "$RELEASE_OUT_DIR"
+        cp "apr-util/x64/Release/libaprutil-1."{lib,dll} "$RELEASE_OUT_DIR"
+    fi
 
     INCLUDE_DIR="$STAGING_DIR/include/apr-1"
     mkdir -p "$INCLUDE_DIR"      || echo "$INCLUDE_DIR exists"

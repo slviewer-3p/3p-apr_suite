@@ -29,33 +29,69 @@
             <key>name</key>
             <string>darwin</string>
           </map>
+          <key>darwin64</key>
+          <map>
+            <key>archive</key>
+            <map>
+              <key>hash</key>
+              <string>b010d8e5a8035ff6fd49b46c7c46694a</string>
+              <key>url</key>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/lindenlab_3p-expat/rev/312041/arch/Darwin/installer/expat-2.0.1.312041-darwin64-312041.tar.bz2</string>
+            </map>
+            <key>name</key>
+            <string>darwin64</string>
+          </map>
           <key>linux</key>
           <map>
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>f546615d76bc0f9e8bc2b9ef89f0ca86</string>
+              <string>0d4025a6b6adfb0db66fbb6627504503</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/297014/arch/Linux/installer/expat-2.0.1.297014-linux-297014.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/lindenlab_3p-expat/rev/312041/arch/Linux/installer/expat-2.0.1.312041-linux-312041.tar.bz2</string>
             </map>
             <key>name</key>
             <string>linux</string>
+          </map>
+          <key>linux64</key>
+          <map>
+            <key>archive</key>
+            <map>
+              <key>hash</key>
+              <string>d8822fcb8067d0eb8de287f3c3a963d6</string>
+              <key>url</key>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/lindenlab_3p-expat/rev/312041/arch/Linux/installer/expat-2.0.1.312041-linux64-312041.tar.bz2</string>
+            </map>
+            <key>name</key>
+            <string>linux64</string>
           </map>
           <key>windows</key>
           <map>
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>c70c72a8a0a1e508691a9b35739b373f</string>
+              <string>cde484d021e249405f83016f7b479d88</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/expat_3p-update-expat/rev/297014/arch/CYGWIN/installer/expat-2.0.1.297014-windows-297014.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/lindenlab_3p-expat/rev/312041/arch/CYGWIN/installer/expat-2.0.1.312041-windows-312041.tar.bz2</string>
             </map>
             <key>name</key>
             <string>windows</string>
           </map>
+          <key>windows64</key>
+          <map>
+            <key>archive</key>
+            <map>
+              <key>hash</key>
+              <string>70e5f8be593ef5dd0bc2b0375e09b8b1</string>
+              <key>url</key>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/lindenlab_3p-expat/rev/312041/arch/CYGWIN/installer/expat-2.0.1.312041-windows64-312041.tar.bz2</string>
+            </map>
+            <key>name</key>
+            <string>windows64</string>
+          </map>
         </map>
         <key>version</key>
-        <string>2.0.1.297014</string>
+        <string>2.0.1.312041</string>
       </map>
     </map>
     <key>package_description</key>
@@ -169,7 +205,6 @@
           <array>
             <string>include/apr-1/arch/*.h</string>
             <string>include/apr-1/private/*.h</string>
-            <string>lib/debug/*</string>
             <string>lib/release/*</string>
           </array>
           <key>name</key>
