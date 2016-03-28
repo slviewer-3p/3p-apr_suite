@@ -179,9 +179,6 @@
             <string>lib/release/*.so</string>
             <string>lib/release/*.so.*</string>
             <string>lib/release/*.a</string>
-            <string>lib/debug/*.so</string>
-            <string>lib/debug/*.so.*</string>
-            <string>lib/debug/*.a</string>
           </array>
           <key>name</key>
           <string>linux</string>
