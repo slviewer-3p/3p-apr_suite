@@ -34,9 +34,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>b010d8e5a8035ff6fd49b46c7c46694a</string>
+              <string>0f7c2e9b370aa9cf5ee86018586b6af1</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/lindenlab_3p-expat/rev/312041/arch/Darwin/installer/expat-2.0.1.312041-darwin64-312041.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/p64_3p-expat/rev/313711/arch/Darwin/installer/expat-2.1.1.313711-darwin64-313711.tar.bz2</string>
             </map>
             <key>name</key>
             <string>darwin64</string>
@@ -46,9 +46,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>0d4025a6b6adfb0db66fbb6627504503</string>
+              <string>20976bed8203a5ad365b3196882877aa</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/lindenlab_3p-expat/rev/312041/arch/Linux/installer/expat-2.0.1.312041-linux-312041.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/p64_3p-expat/rev/313711/arch/Linux/installer/expat-2.1.1.313711-linux-313711.tar.bz2</string>
             </map>
             <key>name</key>
             <string>linux</string>
@@ -58,9 +58,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>d8822fcb8067d0eb8de287f3c3a963d6</string>
+              <string>5a13b6cca3bcb192b711c46ae3524059</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/lindenlab_3p-expat/rev/312041/arch/Linux/installer/expat-2.0.1.312041-linux64-312041.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/p64_3p-expat/rev/313711/arch/Linux/installer/expat-2.1.1.313711-linux64-313711.tar.bz2</string>
             </map>
             <key>name</key>
             <string>linux64</string>
@@ -70,9 +70,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>cde484d021e249405f83016f7b479d88</string>
+              <string>520a8d9104636802d2252394530050e5</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/lindenlab_3p-expat/rev/312041/arch/CYGWIN/installer/expat-2.0.1.312041-windows-312041.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/p64_3p-expat/rev/313711/arch/CYGWIN/installer/expat-2.1.1.313711-windows-313711.tar.bz2</string>
             </map>
             <key>name</key>
             <string>windows</string>
@@ -82,16 +82,16 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>70e5f8be593ef5dd0bc2b0375e09b8b1</string>
+              <string>e6a1e7d824287deda22d42b5ac270920</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/lindenlab_3p-expat/rev/312041/arch/CYGWIN/installer/expat-2.0.1.312041-windows64-312041.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/hg/repo/p64_3p-expat/rev/313711/arch/CYGWIN/installer/expat-2.1.1.313711-windows64-313711.tar.bz2</string>
             </map>
             <key>name</key>
             <string>windows64</string>
           </map>
         </map>
         <key>version</key>
-        <string>2.0.1.312041</string>
+        <string>2.1.1.313711</string>
       </map>
     </map>
     <key>package_description</key>
