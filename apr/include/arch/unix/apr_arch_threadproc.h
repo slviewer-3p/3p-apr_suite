@@ -103,6 +103,8 @@ struct apr_procattr_t {
     apr_int32_t errchk;
     apr_uid_t   uid;
     apr_gid_t   gid;
+    apr_int32_t autokill;
+    apr_int32_t constrain;
 };
 
 #endif  /* ! THREAD_PROC_H */
