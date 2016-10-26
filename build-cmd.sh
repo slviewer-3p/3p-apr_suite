@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # turn on verbose debugging output for parabuild logs.
-set -x
+exec 4>&1; export BASH_XTRACEFD=4; set -x
 # make errors fatal
 set -e
 # complain about unset env variables
@@ -10,7 +10,7 @@ set -u
 APR_INCLUDE_DIR="apr/include"
 
 if [ -z "$AUTOBUILD" ] ; then
-    fail
+    exit 1
 fi
 
 if [ "$OSTYPE" = "cygwin" ] ; then
@@ -19,16 +19,13 @@ else
     autobuild="$AUTOBUILD"
 fi
 
-# load autbuild provided shell functions and variables
-set +x
-eval "$("$autobuild" source_environment)"
-set -x
-
-# set LL_BUILD and friends
-set_build_variables convenience Release
-
 STAGING_DIR="$(pwd)"
 TOP_DIR="$(dirname "$0")"
+
+# load autobuild provided shell functions and variables
+source_environment_tempfile="$STAGING_DIR/source_environment.sh"
+"$autobuild" source_environment > "$source_environment_tempfile"
+. "$source_environment_tempfile"
 
 # extract APR version into VERSION.txt
 APR_INCLUDE_DIR="../apr/include"
@@ -82,7 +79,7 @@ case "$AUTOBUILD_PLATFORM" in
   darwin*)
     PREFIX="$STAGING_DIR"
 
-    opts="-arch $AUTOBUILD_CONFIGURE_ARCH $LL_BUILD"
+    opts="-arch $AUTOBUILD_CONFIGURE_ARCH $LL_BUILD_RELEASE"
 
     pushd "$TOP_DIR/apr"
     CC="clang" CFLAGS="$opts" CXXFLAGS="$opts" LDFLAGS="$opts" \
@@ -173,7 +170,7 @@ case "$AUTOBUILD_PLATFORM" in
   linux*)
     PREFIX="$STAGING_DIR"
 
-    opts="-m$AUTOBUILD_ADDRSIZE $LL_BUILD"
+    opts="-m$AUTOBUILD_ADDRSIZE $LL_BUILD_RELEASE"
 
     # do release builds
     pushd "$TOP_DIR/apr"
@@ -245,5 +242,3 @@ esac
 
 mkdir -p "$STAGING_DIR/LICENSES"
 cat "$TOP_DIR/apr/LICENSE" > "$STAGING_DIR/LICENSES/apr_suite.txt"
-
-pass
