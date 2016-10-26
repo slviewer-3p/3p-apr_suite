@@ -30,9 +30,9 @@ source_environment_tempfile="$STAGING_DIR/source_environment.sh"
 # extract APR version into VERSION.txt
 APR_INCLUDE_DIR="../apr/include"
 # will match -- #<whitespace>define<whitespace>APR_MAJOR_VERSION<whitespace>number  future proofed :)
-major_version=$(perl -ne 's/#\s*define\s+APR_MAJOR_VERSION\s+([\d]+)/$1/ && print' "${APR_INCLUDE_DIR}/apr_version.h")
-minor_version=$(perl -ne 's/#\s*define\s+APR_MINOR_VERSION\s+([\d]+)/$1/ && print' "${APR_INCLUDE_DIR}/apr_version.h")
-patch_version=$(perl -ne 's/#\s*define\s+APR_PATCH_VERSION\s+([\d]+)/$1/ && print' "${APR_INCLUDE_DIR}/apr_version.h")
+major_version="$(sed -n -E 's/#[[:space:]]*define[[:space:]]+APR_MAJOR_VERSION[[:space:]]+([0-9]+)/\1/p' "${APR_INCLUDE_DIR}/apr_version.h")"
+minor_version="$(sed -n -E 's/#[[:space:]]*define[[:space:]]+APR_MINOR_VERSION[[:space:]]+([0-9]+)/\1/p' "${APR_INCLUDE_DIR}/apr_version.h")"
+patch_version="$(sed -n -E 's/#[[:space:]]*define[[:space:]]+APR_PATCH_VERSION[[:space:]]+([0-9]+)/\1/p' "${APR_INCLUDE_DIR}/apr_version.h")"
 version="${major_version}.${minor_version}.${patch_version}"
 build=${AUTOBUILD_BUILD_ID:=0}
 echo "${version}.${build}" > "${STAGING_DIR}/VERSION.txt"
