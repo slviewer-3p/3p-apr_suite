@@ -42,6 +42,7 @@
 #include <process.h>
 #endif
 #include "apr_log.h"
+#include <VersionHelpers.h>
 
 /* Heavy on no'ops, here's what we want to pass if there is APR_NO_FILE
  * requested for a specific child handle;
@@ -1203,6 +1204,16 @@ static apr_status_t apr_assign_proc_to_jobobject(HANDLE proc)
         // Configure all child processes associated with this new job object
         // to terminate when the calling process (us!) terminates.
         jeli.BasicLimitInformation.LimitFlags = JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
+
+        // <FS:ND> For anything lower than Windows 8, set JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK
+        // This is so all processes spawned by CEF will not be put into this job group. This is needed
+        // for sandboxing and stopping Flash from creating a console window.
+        // CEF itself will make sure that all child processes are killed when SLPlugin dies, so there's no negative
+        // side effect.
+        if( !IsWindows8OrGreater() )
+            jeli.BasicLimitInformation.LimitFlags |= JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK;
+        // </FS:ND>
+
         apr_log("    SetInformationJobObject()");
         if (! SetInformationJobObject(sJob, JobObjectExtendedLimitInformation, &jeli, sizeof(jeli)))
         {
