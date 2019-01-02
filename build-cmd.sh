@@ -44,6 +44,11 @@ case "$AUTOBUILD_PLATFORM" in
 
     load_vsvars
 
+    #### DEBUGGING
+    ls -l "${VCINSTALLDIR}/bin"/nmake*
+    which nmake
+    #### END DEBUGGING
+
     for proj in apr aprutil apriconv xml libapr  libaprutil libapriconv
       do build_sln "apr-util/aprutil.sln" "Release|$AUTOBUILD_WIN_VSPLATFORM" "$proj"
     done
