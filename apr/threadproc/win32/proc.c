@@ -1157,11 +1157,6 @@ static apr_status_t apr_assign_proc_to_jobobject(HANDLE proc)
 
 /* This function is liberally derived from Raymond Chen's
  * http://blogs.msdn.com/b/oldnewthing/archive/2011/12/16/10248328.aspx
- *
- * Note that as the Win32 API functions on which it relies are not supported
- * in Windows XP, we've declared them in win32/apr_arch_misc.h using the
- * APR_DECLARE_LATE_DLL_FUNC() macro, and we use APR_HAVE_LATE_DLL_FUNC() to
- * test for their existence.
  */
 static apr_status_t apr_set_handle_list(LPPROC_THREAD_ATTRIBUTE_LIST* ppattrlist,
                                         DWORD cHandlesToInherit,
@@ -1174,19 +1169,6 @@ static apr_status_t apr_set_handle_list(LPPROC_THREAD_ATTRIBUTE_LIST* ppattrlist
     *ppattrlist = NULL;
 
     if (! cHandlesToInherit)
-        return APR_SUCCESS;
-
-    /*
-     * When running on Windows XP and the necessary functions are not
-     * available, simply skip out of this function, pretending success. If we
-     * want to pass open file handles to a child process on such a system, we
-     * cannot constrain the set of passed handles; we must accept the old
-     * semantic of passing ALL file handles except those explicitly marked "do
-     * not inherit."
-     */
-    if (! (APR_HAVE_LATE_DLL_FUNC(InitializeProcThreadAttributeList) &&
-           APR_HAVE_LATE_DLL_FUNC(DeleteProcThreadAttributeList) &&
-           APR_HAVE_LATE_DLL_FUNC(UpdateProcThreadAttribute)))
         return APR_SUCCESS;
 
     if (cHandlesToInherit >= (0xFFFFFFFF / sizeof(HANDLE))) {
