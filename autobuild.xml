@@ -34,9 +34,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>fd182ab5bed66c94899dec3035310945</string>
+              <string>cd40d2c493202dd878f281b51587f439</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/ct2/384/954/expat-2.1.1.500375-darwin64-500375.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/ct2/31384/263317/expat-2.1.1.523905-darwin64-523905.tar.bz2</string>
             </map>
             <key>name</key>
             <string>darwin64</string>
@@ -70,9 +70,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>09ece3f04ec0bd21dd0d401235aa20f7</string>
+              <string>d00e030def6723101598448d255f1f33</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/ct2/383/949/expat-2.1.1.500375-windows-500375.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/ct2/31413/263450/expat-2.1.1.523905-windows-523905.tar.bz2</string>
             </map>
             <key>name</key>
             <string>windows</string>
@@ -82,16 +82,16 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>5c82a3482799fe22b3c8fcb317f87bbb</string>
+              <string>4ae23bcf85a2298bcbc45b84718209c3</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/ct2/382/946/expat-2.1.1.500375-windows64-500375.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/ct2/31412/263443/expat-2.1.1.523905-windows64-523905.tar.bz2</string>
             </map>
             <key>name</key>
             <string>windows64</string>
           </map>
         </map>
         <key>version</key>
-        <string>2.1.1.500375</string>
+        <string>2.1.1.523905</string>
       </map>
     </map>
     <key>package_description</key>
