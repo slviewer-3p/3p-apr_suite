@@ -64,6 +64,10 @@ case "$AUTOBUILD_PLATFORM" in
 from collections import OrderedDict
 print(':'.join(OrderedDict((dir.rstrip('/'), 1) for dir in sys.argv[1].split(':'))))" "$PATH")"
 
+    sep 'PATH'
+    cygpath -p -m "$PATH" | tr ';' '\n'
+    sep "${#PATH} chars in PATH"
+
     for proj in apr aprutil apriconv xml libapr  libaprutil libapriconv
       do build_sln "apr-util/aprutil.sln" "Release|$AUTOBUILD_WIN_VSPLATFORM" "$proj"
     done
