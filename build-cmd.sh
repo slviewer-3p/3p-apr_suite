@@ -72,6 +72,8 @@ if not any(frag in d for frag in ('CommonExtensions', 'VSPerfCollectionTools', '
     cygpath -p -m "$PATH" | tr ';' '\n'
     python -c "print(' ${#PATH} chars in PATH '.center(72, '='))"
 
+    which nmake
+
     for proj in apr aprutil apriconv xml libapr  libaprutil libapriconv
       do build_sln "apr-util/aprutil.sln" "Release|$AUTOBUILD_WIN_VSPLATFORM" "$proj"
     done
