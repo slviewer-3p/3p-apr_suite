@@ -8,7 +8,7 @@ rmdir=deltree /y
 !ERROR it's not NT
 !ENDIF
 
-SILENT=
+SILENT=@
 
 # Default build and bind modes
 BUILD_MODE = release
