@@ -64,6 +64,10 @@ case "$AUTOBUILD_PLATFORM" in
 from collections import OrderedDict
 print(':'.join(OrderedDict((dir.rstrip('/'), 1) for dir in sys.argv[1].split(':'))))" "$PATH")"
 
+    export PATH="$(python -u -c "import sys
+print(':'.join(d for d in sys.argv[1].split(':')
+if not any(frag in d for frag in ('CommonExtensions', 'VSPerfCollectionTools', 'Team Tools'))))" "$PATH")"
+
     python -c "print(' PATH '.center(72, '='))"
     cygpath -p -m "$PATH" | tr ';' '\n'
     python -c "print(' ${#PATH} chars in PATH '.center(72, '='))"
