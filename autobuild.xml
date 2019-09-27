@@ -34,9 +34,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>cd40d2c493202dd878f281b51587f439</string>
+              <string>1f241fe0991730521573df2d3efc57d4</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/ct2/31384/263317/expat-2.1.1.523905-darwin64-523905.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/ct2/44226/391162/expat-2.1.1.531326-darwin64-531326.tar.bz2</string>
             </map>
             <key>name</key>
             <string>darwin64</string>
@@ -70,9 +70,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>d00e030def6723101598448d255f1f33</string>
+              <string>7b47285c44afeaca12c5e37903610add</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/ct2/31413/263450/expat-2.1.1.523905-windows-523905.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/ct2/44147/390981/expat-2.1.1.531326-windows-531326.tar.bz2</string>
             </map>
             <key>name</key>
             <string>windows</string>
@@ -82,16 +82,16 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>4ae23bcf85a2298bcbc45b84718209c3</string>
+              <string>6f14359e32d5c23ff89dad89835d0aba</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/ct2/31412/263443/expat-2.1.1.523905-windows64-523905.tar.bz2</string>
+              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/ct2/44146/390974/expat-2.1.1.531326-windows64-531326.tar.bz2</string>
             </map>
             <key>name</key>
             <string>windows64</string>
           </map>
         </map>
         <key>version</key>
-        <string>2.1.1.523905</string>
+        <string>2.1.1.531326</string>
       </map>
     </map>
     <key>package_description</key>
