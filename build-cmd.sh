@@ -157,6 +157,14 @@ if not any(frag in d for frag in ('CommonExtensions', 'VSPerfCollectionTools', '
        pushd "$PREFIX/lib/release"
        fix_dylib_id "$libname-1.0.dylib" || \
        echo "fix_dylib_id $libname-1.0.dylib failed, proceeding"
+
+       CONFIG_FILE="$build_secrets_checkout/code-signing-osx/config.sh"
+       if [ -f "$CONFIG_FILE" ]; then
+           source $CONFIG_FILE
+           codesign --force --timestamp --sign "$APPLE_SIGNATURE" "$libname-1.0.dylib"
+       else 
+           echo "No config file found; skipping codesign."
+       fi
        popd
        # Recreate the $libname-1.dylib symlink, because the one in lib/ is
        # pointing to (e.g.) libapr-1.0.4.5.dylib -- no good
