@@ -58,9 +58,9 @@
             <key>archive</key>
             <map>
               <key>hash</key>
-              <string>5e1f025d1cebd12db542080aa755257f</string>
+              <string>2e9d90adc83683a5d9fba9f999418a64</string>
               <key>url</key>
-              <string>http://automated-builds-secondlife-com.s3.amazonaws.com/ct2/380/943/expat-2.1.1.500375-linux64-500375.tar.bz2</string>
+              <string>jf://packages/linux64/expat-2.1.1.221621521-linux64_bionic-221621521.tar.bz2</string>
             </map>
             <key>name</key>
             <string>linux64</string>
@@ -91,13 +91,13 @@
           </map>
         </map>
         <key>version</key>
-        <string>2.1.1.555519</string>
+        <string>2.1.1.221621521</string>
       </map>
     </map>
     <key>package_description</key>
     <map>
       <key>canonical_repo</key>
-      <string>https://bitbucket.org/lindenlab/3p-apr_suite</string>
+      <string>https://bitbucket.org/nickyd/3p-apr_suite</string>
       <key>copyright</key>
       <string>Copyright © 2012 The Apache Software Foundation, Licensed under the Apache License, Version 2.0.</string>
       <key>description</key>
