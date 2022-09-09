@@ -215,7 +215,7 @@ if not any(frag in d for frag in ('CommonExtensions', 'VSPerfCollectionTools', '
     pushd "$TOP_DIR/apr"
         LDFLAGS="$opts" CFLAGS="$opts" CXXFLAGS="$opts" \
             ./configure --prefix="$PREFIX" --libdir="$PREFIX/lib/release"
-        make
+        make -j `nproc`
         make install
     popd
 
@@ -225,7 +225,7 @@ if not any(frag in d for frag in ('CommonExtensions', 'VSPerfCollectionTools', '
         mkdir "$PREFIX/iconv"
         LDFLAGS="$opts" CFLAGS="$opts" CXXFLAGS="$opts" \
             ./configure --prefix="$PREFIX/iconv" --with-apr="../apr"
-        make
+        make -j `nproc`
         make install
 
         # move the files into place
