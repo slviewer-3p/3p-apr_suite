@@ -213,7 +213,7 @@ if not any(frag in d for frag in ('CommonExtensions', 'VSPerfCollectionTools', '
 
     # do release builds
     pushd "$TOP_DIR/apr"
-	    autoreconf -vi
+        autoreconf -vif
         LDFLAGS="$opts" CFLAGS="$opts" CXXFLAGS="$opts" \
             ./configure --prefix="$PREFIX" --libdir="$PREFIX/lib/release"
         make -j `nproc`
@@ -224,7 +224,7 @@ if not any(frag in d for frag in ('CommonExtensions', 'VSPerfCollectionTools', '
         # NOTE: the autotools scripts in iconv don't honor the --libdir switch so we
         # need to build to a dummy prefix and copy the files into the correct place
         mkdir "$PREFIX/iconv"
-	    autoreconf -vi
+        autoreconf -vif
         LDFLAGS="$opts" CFLAGS="$opts" CXXFLAGS="$opts" \
             ./configure --prefix="$PREFIX/iconv" --with-apr="../apr"
         make -j `nproc`
@@ -246,6 +246,7 @@ if not any(frag in d for frag in ('CommonExtensions', 'VSPerfCollectionTools', '
         # the autotools for apr-util don't honor the --libdir switch so we
         # need to build to a dummy prefix and copy the files into the correct place
         mkdir "$PREFIX/util"
+        autoreconf -vif
         LDFLAGS="$opts" CFLAGS="$opts" CXXFLAGS="$opts" \
             ./configure --prefix="$PREFIX/util" \
             --with-apr="../apr" \
