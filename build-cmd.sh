@@ -209,7 +209,7 @@ if not any(frag in d for frag in ('CommonExtensions', 'VSPerfCollectionTools', '
   linux*)
     PREFIX="$STAGING_DIR"
 
-    opts="-m$AUTOBUILD_ADDRSIZE $LL_BUILD_RELEASE"
+    opts="${AUTOBUILD_GCC_ARCH} $LL_BUILD_RELEASE"
 
     # do release builds
     pushd "$TOP_DIR/apr"
